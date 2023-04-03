@@ -3,6 +3,14 @@ Tugas Besar Kelompok 103 Kelas 8 Dasar Pemograman
 
 # Tugas Besar
 
+## Spesifikasi
+
+https://docs.google.com/document/d/1aMDXJNT-S1K2K1B-zVPfJyavmi3QwR5FRxJgObbX4d0/edit
+
+## Pedoman
+
+https://docs.google.com/document/d/12G2NKudDz2mkpIan3ETCke32jStL4ISYr1IkVeYTsWk/edit
+
 ## Link Kelompok
 
 https://docs.google.com/spreadsheets/d/e/2PACX-1vRuj5knbDL3-J4r-t3RjftColSxuOVA0FkTIBSEZSjjDGSi5CjWJuTiYDfntrNA9F5FgPwTofIgqJrg/pubhtml
