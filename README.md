@@ -28,4 +28,4 @@ https://docs.google.com/spreadsheets/d/150tM5KS0iX52rFiLw_hoX_iwHH9HEJXwMlTtyiYb
 > git commit -m "Penambahan fungsi 1"
 
 ### Upload
-> 
+> git push
