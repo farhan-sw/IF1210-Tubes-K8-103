@@ -1,5 +1,7 @@
 # File: main.py
 from function import dataModule
+from function import F01_Login
+from function import commands
 #import commands
 
 # Anggap semua fungsi yang dipanggil merupakan fungsi yang sudah dibuat sendiri pada modul lain
@@ -12,11 +14,35 @@ bahan_bangunan = [['Nama 1', 'Des 1', 'Jum 1'], ['Nam 2', 'des 2', 'Jum 2']] # D
 # dataModule.load("file/bahan_bangunan.csv", bahan_bangunan)
 #print(users)
 
-for i in range(2):
-    for j in range(3):
-        print(users[i][j], end=" ")
-    print("")
+# Deklarasi Variabel Global
+isLogin = False
+username = ""
+indeks = -999
 
-# while True:
-#   masukan = input(">>> ")
-#   commands.run(masukan)
+isStart = True
+while isStart:
+  masukan = input(">>> ")
+  #commands.run(masukan)
+
+    # FUNGSI LOGIN F01
+  if(masukan == "login" and isLogin == False):
+    username = input("Username: ")
+    isLogin = F01_Login.login(username, users)
+    indeks = dataModule.cariIndeks(username, users)
+  elif(masukan == "login" and isLogin == True):
+     print("Anda sudah login, silahkan logout untuk login kembali.")
+
+    # FUNGSI LOGOUT F02
+  elif(masukan == "logout" and isLogin == True):
+     print("Keluar dari semua akun.")
+     isLogin = False
+  elif(masukan == "logout" and isLogin == False):
+     print("Anda tidak sedang login.")
+
+     #
+  elif(masukan == "exit"):
+     isStart = False
+     
+  else :
+     print("ulangi")
+     

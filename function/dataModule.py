@@ -17,3 +17,15 @@ def separate(sentence):
     if tmp:
         split_value.append(tmp)
     return split_value
+
+def count(data):
+    counter = 0
+    for i in data:
+        counter += 1
+    return counter
+
+def cariIndeks(username, data_username):
+    for i in range(count(data_username)):
+        if(data_username[i][0] == username):
+            return i
+    return (-999)
