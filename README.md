@@ -18,3 +18,10 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vRuj5knbDL3-J4r-t3RjftColSxuOVA0
 ## Link QNA
 
 https://docs.google.com/spreadsheets/d/150tM5KS0iX52rFiLw_hoX_iwHH9HEJXwMlTtyiYbMos/edit#gid=345669090
+
+## Langkah Git
+
+### Cek Git
+> git --version
+### Update Perubahan
+> git add .
