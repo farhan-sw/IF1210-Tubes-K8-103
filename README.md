@@ -23,6 +23,10 @@ https://docs.google.com/spreadsheets/d/150tM5KS0iX52rFiLw_hoX_iwHH9HEJXwMlTtyiYb
 
 ### Cek Git
 > git --version
+
+### Clone Repo
+> git clone https://github.com/farhan-sw/IF1210-Tubes-K8-103.git
+
 ### Update Perubahan
 > git add .
 
