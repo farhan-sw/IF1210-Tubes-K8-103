@@ -39,7 +39,7 @@ while isStart:
   elif(masukan == "logout" and isLogin == False):
      print("Anda tidak sedang login.")
 
-     #
+     # Keluar dari program
   elif(masukan == "exit"):
      isStart = False
      
