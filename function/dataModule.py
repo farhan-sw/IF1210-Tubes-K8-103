@@ -3,6 +3,21 @@ try:
 except:
     from function import commands
 
+# -------------------------------- MODUL PEMBACAAN DATA ----------------------------------------
+
+# function load(filename : string) -> (matriks)
+# { Menerima input path dari data .csv dan mengeluarkan output matriks data}
+
+# function cariIndeks(username : string, data_username : matriks) -> (integer)
+# { Menerima input username dan akan memberikan output indeks baris bersesuaian dengan data }
+
+# function cariRole( username : string, data_username : matriks ) -> string
+# { Menerima input username dan akan mengeluarkan role dari username tersebut}
+
+# procedure printInfo(username : string, data_username : matriks)
+# I.S.  data_username sudah terdefinisi terdiri dari data user
+# F.S.  Mengeluarkan output informasi username, password, role berdasar input username
+
 def load(filename, data):
 
     print(filename)
