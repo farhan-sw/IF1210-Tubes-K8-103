@@ -23,7 +23,10 @@ def load(filename, NMax, data_matriks, kolom):
     data = [commands.separate(line, NMax,'\n') for line in lines]
     file.close()
 
-    rows = commands.count(data)
+    rows = 0
+    for i in data:
+        rows += 1
+
     matrix = [[(cell) for cell in commands.separate(data[i][0], NMax, ';')] for i in range(rows)]
 
     # Lanjutkan isi Matriks
@@ -52,4 +55,4 @@ def printInfo(username, data_username, NMax):
         elif(j==2)  : print("Role: ", end="")
         print(data_username[indeks][j], end="  ||  ")
 
-        if(j==(commands.count(data_username[indeks])-1)): print("")
+        if(j== 2): print("")

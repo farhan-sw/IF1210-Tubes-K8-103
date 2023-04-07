@@ -40,12 +40,6 @@ def countArray(array, NMax, mark="*"):
             counter += 1
     return counter
 
-def count(data):
-    counter = 0
-    for i in data:
-        counter += 1
-    return counter
-
 def countMatriks(matriks, NMax, mark="*"):
     counter = 0
     for i in range(NMax):
