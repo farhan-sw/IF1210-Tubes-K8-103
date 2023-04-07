@@ -15,34 +15,42 @@ bahan_bangunan = [['Nama 1', 'Des 1', 'Jum 1'], ['Nam 2', 'des 2', 'Jum 2']] # D
 #print(users)
 
 # Deklarasi Variabel Global
-isLogin = False
 username = ""
-indeks = -999
+user_isLogin = False
+user_indeks = -999
+user_role = "Unknown"
 
 isStart = True
 while isStart:
-  masukan = input(">>> ")
-  #commands.run(masukan)
+   masukan = input(">>> ")
+   #commands.run(masukan)
 
-    # FUNGSI LOGIN F01
-  if(masukan == "login" and isLogin == False):
-    username = input("Username: ")
-    isLogin = F01_Login.login(username, users)
-    indeks = dataModule.cariIndeks(username, users)
-  elif(masukan == "login" and isLogin == True):
-     print("Anda sudah login, silahkan logout untuk login kembali.")
+   # --------------------------------------------------------------------------------------------
+   # IMPLEMENTASI FUNGSI LOGIN F01
+   if(masukan == "login" and user_isLogin == False):
+      username = input("Username: ")
+      user_isLogin = F01_Login.login(username, users)
+      user_indeks = dataModule.cariIndeks(username, users)
+      user_role = dataModule.cariRole(username, users)
 
-    # FUNGSI LOGOUT F02
-  elif(masukan == "logout" and isLogin == True):
-     print("Keluar dari semua akun.")
-     isLogin = False
-  elif(masukan == "logout" and isLogin == False):
-     print("Anda tidak sedang login.")
+   elif(masukan == "login" and user_isLogin == True):
+      print("Anda sudah login, silahkan logout untuk login kembali.")
+   else:
+      print("Anda belum login, pastikan anda suah login")
+   # --------------------------------------------------------------------------------------------
+   
+   # Loop ketika terdeteksi sudah login
+   while user_isLogin:
+      masukan = input(">>> ")
 
-     # Keluar dari program
-  elif(masukan == "exit"):
-     isStart = False
-     
-  else :
-     print("ulangi")
+      if (masukan == "summonjin"):
+         print("summonjin")
+
+      elif( masukan == "printInfo"):
+         search_username = input("Masukkan username yang ingin dicari: ")
+         dataModule.printInfo(search_username, users)
+      else:
+         print("Perintah tidak ditemukan, ketik 'Help' untuk bantuan")
+
+   
      
