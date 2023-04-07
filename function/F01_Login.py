@@ -1,11 +1,11 @@
 # Import Modul bentukan 
-try:
-    import dataModule
-except ImportError:
-    from function import dataModule
+import sys
+sys.path.insert(0, 'function')
+import dataModule
+import commands
 
     # Fungsi Login          login(username, data_username)
-def login(username, data_username):
+def login(username, data_username, NMax):
 
     # KAMUS LOKAL
     # password : string
@@ -17,7 +17,7 @@ def login(username, data_username):
     isPassword = False                          # Deklarasi nilai awal, password salah
 
     # Looping pencarian username di database
-    for i in range((dataModule.count(data_username))):
+    for i in range(NMax):
         if(data_username[i][0] == username):
             isUsername = True                   # Jika username ditemukan, update kondisi
         if(data_username[i][1] == password):
