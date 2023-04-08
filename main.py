@@ -2,6 +2,7 @@
 from function import dataModule
 from function import F01_Login
 from function import commands
+from function import F02_Logout
 #import commands
 
 NMax_user = 30 ; kolom_user = 3
@@ -43,8 +44,10 @@ while isStart:
 
    elif(masukan == "login" and user_isLogin == True):
       print("Anda sudah login, silahkan logout untuk login kembali.")
+   elif(masukan == "logout"):
+      print("Logout gagal! Anda belum login, silahkan login terlebih dahulu sebelum melakukan logout")
    else:
-      print("Anda belum login, pastikan anda suah login")
+      print("Harap masukkan command yang valid (login/logout)!")
    # --------------------------------------------------------------------------------------------
    
    # Loop ketika terdeteksi sudah login
@@ -60,11 +63,10 @@ while isStart:
          dataModule.printInfo(search_username, users, NMax_user)
       elif( masukan == "Info" ):
          print(username, user_isLogin, user_indeks, user_role)
-      elif( masukan == "exit" ):
+      # --------------------------------------------------------------------------------------------
+      # IMPLEMEMNTASI FUNGSI LOGOUT F02
+      elif(masukan == "logout"):
+         F02_Logout.logout
          user_isLogin = False
-         isStart = False
       else:
          print("Perintah tidak ditemukan, ketik 'Help' untuk bantuan")
-
-   
-     
