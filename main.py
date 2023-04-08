@@ -42,9 +42,7 @@ while isStart:
       user_indeks = dataModule.cariIndeks(username, users, NMax_user)
       user_role = dataModule.cariRole(username, users, NMax_user)
 
-   elif(masukan == "login" and user_isLogin == True):
-      print("Anda sudah login, silahkan logout untuk login kembali.")
-   elif(masukan == "logout"):
+   elif (masukan == "logout" and user_isLogin == False):
       print("Logout gagal! Anda belum login, silahkan login terlebih dahulu sebelum melakukan logout")
    else:
       print("Harap masukkan command yang valid (login/logout)!")
@@ -57,6 +55,8 @@ while isStart:
       if (masukan == "summonjin"):
          print("summonjin")
 
+      elif(masukan == "login" and user_isLogin == True):
+         print("Anda sudah login, silahkan logout untuk login kembali.")
 
       elif( masukan == "printInfo"):
          search_username = input("Masukkan username yang ingin dicari: ")
@@ -66,7 +66,8 @@ while isStart:
       # --------------------------------------------------------------------------------------------
       # IMPLEMEMNTASI FUNGSI LOGOUT F02
       elif(masukan == "logout"):
-         F02_Logout.logout
-         user_isLogin = False
+         user_isLogin =F02_Logout.logout(user_isLogin)
+      # --------------------------------------------------------------------------------------------
+      
       else:
          print("Perintah tidak ditemukan, ketik 'Help' untuk bantuan")

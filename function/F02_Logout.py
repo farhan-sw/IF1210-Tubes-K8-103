@@ -1,2 +1,2 @@
-def logout():
-    return
+def logout(isLogin):
+    return not isLogin
