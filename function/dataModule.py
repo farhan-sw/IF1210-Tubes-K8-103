@@ -56,3 +56,8 @@ def printInfo(username, data_username, NMax):
         print(data_username[indeks][j], end="  ||  ")
 
         if(j== 2): print("")
+
+def printUsername(data_username, NMax):
+    for i in range(NMax):
+        if (data_username[i][0] != "*"):
+            print(f'|   Nama : {data_username[i][0]}  ||    Pass : {data_username[i][1]}  ||  Role : {data_username[i][2]}    |')

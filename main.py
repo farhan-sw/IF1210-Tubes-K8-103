@@ -77,6 +77,9 @@ while isStart:
       elif(masukan == "logout"):
          user_isLogin =F02_Logout.logout(user_isLogin)
       # --------------------------------------------------------------------------------------------
-      
+
+      elif(masukan == "print semua user"):
+         dataModule.printUsername(users, NMax_user)
+
       else:
          print("Perintah tidak ditemukan, ketik 'Help' untuk bantuan")
