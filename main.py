@@ -3,6 +3,7 @@ from function import dataModule
 from function import F01_Login
 from function import F03_SummonJin
 from function import commands
+from function import F02_Logout
 #import commands
 
 NMax_user = 30 ; kolom_user = 3
@@ -42,10 +43,10 @@ while isStart:
       user_indeks = dataModule.cariIndeks(username, users, NMax_user)
       user_role = dataModule.cariRole(username, users, NMax_user)
 
-   elif(masukan == "login" and user_isLogin == True):
-      print("Anda sudah login, silahkan logout untuk login kembali.")
+   elif (masukan == "logout" and user_isLogin == False):
+      print("Logout gagal! Anda belum login, silahkan login terlebih dahulu sebelum melakukan logout")
    else:
-      print("Anda belum login, pastikan anda suah login")
+      print("Harap masukkan command yang valid (login/logout)!")
    # --------------------------------------------------------------------------------------------
    
    # Loop ketika terdeteksi sudah login
@@ -55,6 +56,7 @@ while isStart:
       # -----------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI SUMMONJIN F03
       if (masukan == "summonjin"):
+<<<<<<< HEAD
          if (masukan == "summonjin"):
             if user_role == "bandung_bondowoso":
                print("Jenis jin yang dapat dipanggil: \n (1) Pengumpul - Bertugas mengumpulkan bahan bangunan \n (2) Pembangun - Bertugas membangun candi")
@@ -63,17 +65,23 @@ while isStart:
          else:
             print("Anda tidak memiliki akses untuk menggunakan perintah ini")
       # -----------------------------------------------------------------------------------------
+=======
+         print("summonjin")
+
+      elif(masukan == "login" and user_isLogin == True):
+         print("Anda sudah login, silahkan logout untuk login kembali.")
+>>>>>>> 224c4aa8c5d56c3ae0cbc3691bb7bc7b74b7d136
 
       elif( masukan == "printInfo"):
          search_username = input("Masukkan username yang ingin dicari: ")
          dataModule.printInfo(search_username, users, NMax_user)
       elif( masukan == "Info" ):
          print(username, user_isLogin, user_indeks, user_role)
-      elif( masukan == "exit" ):
-         user_isLogin = False
-         isStart = False
+      # --------------------------------------------------------------------------------------------
+      # IMPLEMEMNTASI FUNGSI LOGOUT F02
+      elif(masukan == "logout"):
+         user_isLogin =F02_Logout.logout(user_isLogin)
+      # --------------------------------------------------------------------------------------------
+      
       else:
          print("Perintah tidak ditemukan, ketik 'Help' untuk bantuan")
-
-   
-     
