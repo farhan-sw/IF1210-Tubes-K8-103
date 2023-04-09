@@ -1,6 +1,7 @@
 # File: main.py
 from function import dataModule
 from function import F01_Login
+from function import F03_SummonJin
 from function import commands
 #import commands
 
@@ -50,10 +51,18 @@ while isStart:
    # Loop ketika terdeteksi sudah login
    while user_isLogin:
       masukan = input(">>> ")
-
+      
+      # -----------------------------------------------------------------------------------------
+      # IMPLEMENTASI FUNGSI SUMMONJIN F03
       if (masukan == "summonjin"):
-         print("summonjin")
-
+         if (masukan == "summonjin"):
+            if user_role == "bandung_bondowoso":
+               print("Jenis jin yang dapat dipanggil: \n (1) Pengumpul - Bertugas mengumpulkan bahan bangunan \n (2) Pembangun - Bertugas membangun candi")
+               jenis_jin = input("\nMasukkan nomor jenis jin yang ingin dipanggil: ")
+               jin_baru = F03_SummonJin.summonjin (jenis_jin, users, NMax_user)
+         else:
+            print("Anda tidak memiliki akses untuk menggunakan perintah ini")
+      # -----------------------------------------------------------------------------------------
 
       elif( masukan == "printInfo"):
          search_username = input("Masukkan username yang ingin dicari: ")
