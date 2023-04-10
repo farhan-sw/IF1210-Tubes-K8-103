@@ -4,9 +4,6 @@ import commands
 
 # -------------------------------- MODUL PEMBACAAN DATA ----------------------------------------
 
-# function load(filename : string, NMax : integer, data_matriks : Matriks of integer, kolom : integer) -> (matriks)
-# { Menerima input path dari data .csv dan mengeluarkan output matriks data}
-
 # function cariIndeks(username : string, data_username : matriks, NMax : integer) -> (integer)
 # { Menerima input username dan akan memberikan output indeks baris bersesuaian dengan data }
 
@@ -16,24 +13,6 @@ import commands
 # procedure printInfo(username : string, data_username : matriks, NMax : integer)
 # I.S.  data_username sudah terdefinisi terdiri dari data user
 # F.S.  Mengeluarkan output informasi username, password, role berdasar input username
-
-def load(filename, NMax, data_matriks, kolom):
-    file = open(filename, 'r')
-    lines = file.readlines()
-    data = [commands.separate(line, NMax,'\n') for line in lines]
-    file.close()
-
-    rows = 0
-    for i in data:
-        rows += 1
-
-    matrix = [[(cell) for cell in commands.separate(data[i][0], NMax, ';')] for i in range(rows)]
-
-    # Lanjutkan isi Matriks
-    for i in range(rows):
-        for j in range(kolom):
-            data_matriks[i][j] = matrix[i][j]
-    return data_matriks
 
 def cariIndeks(nilai, data_nilai, kolom, NMax):
     for i in range(NMax):

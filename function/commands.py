@@ -1,8 +1,6 @@
 # -------------------------------- MODUL BASIC COMMANDS ----------------------------------------
 
-# function separate(sentence : string, NMax : integer) -> array
-# { Menerima masukan berupa string dan akan memberikan output pemenggalan mark}
-# { Alternatif fungsi .split() }
+
 
 # function countArray(data: array, NMax : integer) -> integer
 # { Menerima input array dan memberikan output banyaknya data di array tersebut yang tidak kosong }
@@ -15,22 +13,6 @@
 
 # function excludeEmptyMatriks(matriks : matriks of string, NMax : integer)
 # { Menghilangkan data kosong yang ada di dalam matriks } 
-
-def separate(sentence, NMax, mark=";"):
-    split_value = ["*" for i in range(NMax)]
-    tmp = ''
-    i = 0
-    for c in sentence:
-        if c == mark:
-            split_value[i] = (tmp)
-            i += 1
-            tmp = ''
-        else:
-            tmp += c
-    if tmp:
-        split_value[i] = (tmp)
-    split_value = excludeEmptyArray(split_value, NMax)
-    return split_value
 
 def countArray(array, NMax, mark="*"):
     counter = 0
@@ -72,14 +54,8 @@ def excludeEmptyMatriks(matriks, NMax, kolom, mark="*"):
     return result
 
 def test():
-    cona = separate("dasd;dawda;ad;dawd;86565;*;*;*", 100)
-    sip = excludeEmptyArray(cona, 10)
-    print(sip)
-
-    print("-----------")
     print("Tes Count")
     users = [['Bondowoso', 'cintaroro', 'bandung_bondowoso'],['Roro', 'gasukabondo', 'roro_jonggrang'], ['*', '*', '*']]
-    print("count Array", countArray(cona, 100))
     print("Count Matriks", countMatriks(users, 3))
 
 #test()
