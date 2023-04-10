@@ -61,6 +61,9 @@ while isStart:
       if(masukan == "logout"):
          user_isLogin =F02_Logout.logout(user_isLogin)
          print("User berhasil loggout")
+      
+      elif(masukan == "login" and user_isLogin == True):
+         print("Anda sudah login, silahkan logout untuk login kembali.")
       # --------------------------------------------------------------------------------------------
 
       
@@ -133,8 +136,10 @@ while isStart:
 
       # --------------------------------------------------------------------------------------------
       
-      elif(masukan == "login" and user_isLogin == True):
-         print("Anda sudah login, silahkan logout untuk login kembali.")
+
+
+
+
 
       elif( masukan == "printInfo"):
          search_username = input("Masukkan username yang ingin dicari: ")
