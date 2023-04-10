@@ -1,0 +1,2 @@
+def bangun():
+    print("")

@@ -31,3 +31,19 @@ def printUsername(data_username, NMax):
         if (data_username[i][0] != "*"):
             print(f' Nama : {data_username[i][0]},   Pass : {data_username[i][1]},   Role : {data_username[i][2]}')
     print("\n")
+
+def printBahan(data_bahan, NMax):
+    for i in range(NMax):
+        if(data_bahan[i][0] == "pasir"):
+            print("Pasir:", data_bahan[i][2], end=", ")      # Jumlah Pasir berada di kolom indeks 2
+    
+    # Update batu, cari lokasi batu
+    for i in range(NMax):
+        if(data_bahan[i][0] == "batu"):
+            print("Batu:", data_bahan[i][2], end=", ")       # Jumlah Batu berada di kolom indeks 2
+
+    # Update air, cari lokasi air
+    for i in range(NMax):
+        if(data_bahan[i][0] == "air"):
+            print("Air:", data_bahan[i][2])        # Jumlah air berada di kolom indeks 2
+    print("\n")

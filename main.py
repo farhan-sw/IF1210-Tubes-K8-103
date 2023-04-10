@@ -5,22 +5,22 @@ from function import F01_Login
 from function import F02_Logout
 from function import F03_SummonJin
 from function import F05_UbahJin
+from function import F07_Pengumpul
 from function import F13_Load
 
-#import commands
-
-NMax_user = 1000 ; kolom_user = 3
-NMax_candi = 1000 ; kolom_candi = 5
-NMax_bahan = 1000 ; kolom_bahan = 3
+# Siapkan nilai awal
+NMax_user   : int = 1000 ; kolom_user  : int = 3
+NMax_candi  : int = 1000 ; kolom_candi : int = 5
+NMax_bahan  : int = 1000 ; kolom_bahan : int = 3
 
 # Anggap semua fungsi yang dipanggil merupakan fungsi yang sudah dibuat sendiri pada modul lain
 users = [["*" for col in range(kolom_user)] for row in range(NMax_user)]            # Matriks data user
 candi = [["*" for col in range(kolom_candi)] for row in range(NMax_candi)]          # Matriks data candi
-bahan_bangunan = [["*" for col in range(kolom_bahan)] for row in range(NMax_bahan)] # Data bahan bangunan
+bahan = [["*" for col in range(kolom_bahan)] for row in range(NMax_bahan)]          # Matriks data bahan bangunan
 
-users          = F13_Load.load("file/user.csv", NMax_user, users, kolom_user)
-candi          = F13_Load.load("file/candi.csv", NMax_candi, candi, kolom_candi)
-bahan_bangunan = F13_Load.load("file/bahan_bangunan.csv", NMax_bahan, bahan_bangunan, kolom_bahan)
+users = F13_Load.load("file/user.csv", NMax_user, users, kolom_user)
+candi = F13_Load.load("file/candi.csv", NMax_candi, candi, kolom_candi)
+bahan = F13_Load.load("file/bahan_bangunan.csv", NMax_bahan, bahan, kolom_bahan)
 
 # Deklarasi Variabel User
 username       : str    = ""
@@ -30,7 +30,7 @@ user_role      : str    = "Unknown"
 
 print(commands.excludeEmptyMatriks(users, NMax_user, kolom_user))
 print(commands.excludeEmptyMatriks(candi, NMax_user, kolom_candi))
-print(commands.excludeEmptyMatriks(bahan_bangunan, NMax_user, kolom_bahan))
+print(commands.excludeEmptyMatriks(bahan, NMax_user, kolom_bahan))
 
 isStart = True
 while isStart:
@@ -95,6 +95,11 @@ while isStart:
 
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI JIN PENGUMPUL F07
+      elif(masukan == "kumpul"):
+         if (user_role == "jin_pengumpul"):
+            bahan = F07_Pengumpul.kumpul(bahan, NMax_bahan)
+         else: # Role selain jin pengumpul
+            print("Anda tidak memiliki akses pada menu ini")
 
       # --------------------------------------------------------------------------------------------
 
@@ -137,8 +142,36 @@ while isStart:
       elif( masukan == "Info" ):
          print(username, user_isLogin, user_indeks, user_role)
 
+
+      # --------------------------------------------------------------------------------------------
+      # IMPLEMENTASI FUNGSI PRINT DATABASE LOKAL
+      # Hanya untuk role : bandung_bondowoso
+
       elif(masukan == "print all"):
-         dataModule.printUsername(users, NMax_user)
+         if user_role != "bandung_bondowoso": 
+            print("Anda tidak memiliki akses untuk menggunakan perintah ini")
+         
+         else: # role bandung_bondowoso
+            # Insiasi data awal dan validasi pilihan
+            isPrint  : bool   = False
+            pilihan  : str    = ""
+            while (isPrint == False):
+               pilihan = input("Apa yang ingin di print? \n (1) User \n (2) Candi \n (3) Bahan \n")
+               if (pilihan == "1" or pilihan == "2" or pilihan == "3"):
+                  isPrint = True
+            
+            # Jika print semua user
+            if (pilihan == "1"):
+               dataModule.printUsername(users, NMax_user)
+            # Jika print candi
+            elif(pilihan == "2"):
+               dataModule.printBahan(bahan, NMax_bahan)
+            # Jika print semua bahan
+            else: # pilihan == "3"
+               dataModule.printBahan(bahan, NMax_bahan)
+      
+      # --------------------------------------------------------------------------------------------
+            
 
       else:
          print("Perintah tidak ditemukan, ketik 'Help' untuk bantuan")
