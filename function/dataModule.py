@@ -20,23 +20,14 @@ def cariIndeks(nilai, data_nilai, kolom, NMax):
             return i
     return (-999)
 
-def cariRole(username, data_username, NMax):
+def cariRole(username : str, data_username, NMax : int):
     for i in range(NMax):
         if(data_username[i][0] == username):
             return (data_username[i][2])
     return ("Unknown")
 
-def printInfo(username, data_username, NMax):
-    indeks = cariIndeks(username, data_username, NMax)
-    for j in range(3):
-        if (j == 0) : print("Username: ", end="")
-        elif(j == 1): print("Password: ", end="")
-        elif(j==2)  : print("Role: ", end="")
-        print(data_username[indeks][j], end="  ||  ")
-
-        if(j== 2): print("")
-
 def printUsername(data_username, NMax):
     for i in range(NMax):
         if (data_username[i][0] != "*"):
-            print(f'|   Nama : {data_username[i][0]}  ||    Pass : {data_username[i][1]}  ||  Role : {data_username[i][2]}    |')
+            print(f' Nama : {data_username[i][0]},   Pass : {data_username[i][1]},   Role : {data_username[i][2]}')
+    print("\n")

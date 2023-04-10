@@ -4,6 +4,7 @@ from function import commands
 from function import F01_Login
 from function import F02_Logout
 from function import F03_SummonJin
+from function import F05_UbahJin
 from function import F13_Load
 
 #import commands
@@ -67,7 +68,7 @@ while isStart:
       # IMPLEMENTASI FUNGSI SUMMONJIN F03
       elif (masukan == "summonjin"):
          if user_role == "bandung_bondowoso": 
-               jin_baru = F03_SummonJin.summonjin (users, NMax_user)
+               users = F03_SummonJin.summonjin (users, NMax_user)
          else:
             print("Anda tidak memiliki akses untuk menggunakan perintah ini")
       # -----------------------------------------------------------------------------------------
@@ -81,7 +82,8 @@ while isStart:
 
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI UBAH TIPE JIN F05
-
+      elif(masukan == "ubahjin"):
+         F05_UbahJin.ubahJin(users, NMax_user)
       # --------------------------------------------------------------------------------------------
 
 
@@ -135,7 +137,7 @@ while isStart:
       elif( masukan == "Info" ):
          print(username, user_isLogin, user_indeks, user_role)
 
-      elif(masukan == "print semua user"):
+      elif(masukan == "print all"):
          dataModule.printUsername(users, NMax_user)
 
       else:

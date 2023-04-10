@@ -17,7 +17,7 @@ def summonjin(data_username, NMax : int):
 
     #ALGORITMA
 
-    # Meminta INput Jenis Jin
+    # Meminta Input Jenis Jin
     print("Jenis jin yang dapat dipanggil: \n (1) Pengumpul - Bertugas mengumpulkan bahan bangunan \n (2) Pembangun - Bertugas membangun candi")
     jenis_jin   : str   = input("\nMasukkan nomor jenis jin yang ingin dipanggil: ")
 
@@ -61,9 +61,9 @@ def summonjin(data_username, NMax : int):
     indeks  : int   = 0
     found   : bool  = False
     while (indeks < NMax) and (found == False):
+        indeks += 1                                         # Tambahkan indeks
         if(data_username[indeks][0] == "*"):
             found = True
-        indeks += 1
 
     # Update data user di berdasarkan indeks
     if (jenis_jin == '1') : # Jin Pengumpul
@@ -77,4 +77,7 @@ def summonjin(data_username, NMax : int):
 
     # Print Mantra
     print(f"\nMengumpulkan sesajen... \nMenyerahkan sesajen... \nMembacakan mantra... \n \nJin {username} berhasil dipanggil!")
+    
+    # Kembalikan nilai matriks baru
+    return data_username
 

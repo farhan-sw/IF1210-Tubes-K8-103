@@ -1,0 +1,8 @@
+    # Validasi, username ada
+    while (isUsername == False):
+        print("Tidak ada jin dengan username tersebut.")
+        username = input("\nMasukkan username jin: ")
+
+        # Pencarian username di database dengan username baru
+        if(dataModule.cariIndeks(username, data_username, 0, NMax) != (-999)):  # "0" karena username berada di kolom 0
+            isUsername = True                       # Username ditemukan
