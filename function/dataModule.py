@@ -35,9 +35,9 @@ def load(filename, NMax, data_matriks, kolom):
             data_matriks[i][j] = matrix[i][j]
     return data_matriks
 
-def cariIndeks(username, data_username, NMax):
+def cariIndeks(nilai, data_nilai, kolom, NMax):
     for i in range(NMax):
-        if(data_username[i][0] == username):
+        if(data_nilai[i][kolom] == nilai):
             return i
     return (-999)
 

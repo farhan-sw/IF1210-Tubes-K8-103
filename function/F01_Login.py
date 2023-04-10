@@ -5,16 +5,16 @@ import dataModule
 import commands
 
     # Fungsi Login          login(username, data_username)
-def login(username, data_username, NMax):
+def login(username : str, data_username, NMax : int):
 
     # KAMUS LOKAL
     # password : string
     # isUsername, isPassword : Boolean
 
     # ALGORITMA
-    password = input("Password: ")              # Meminta masukkan user
-    isUsername = False                          # Deklarasi nilai awal, username tidak ditemukan
-    isPassword = False                          # Deklarasi nilai awal, password salah
+    password    : str   = input("Password: ")            # Meminta masukkan user
+    isUsername  : bool  = False                          # Deklarasi nilai awal, username tidak ditemukan
+    isPassword  : bool  = False                          # Deklarasi nilai awal, password salah
 
     # Looping pencarian username di database
     for i in range(NMax):

@@ -5,72 +5,76 @@ import dataModule
 import commands
 
     # Fungsi SummonJin        login(jenis_jin, data_username)
-def summonjin(jenis_jin, data_username, NMax):
+def summonjin(data_username, NMax : int):
 
     # KAMUS LOKAL
-    # username : string
-    # password : string
-    # isUsername, isPassword : Boolean
-    # data : array of string
+    # indeks    : integer
+    # username  : string
+    # password  : string
+    # jenis_jin : string
+    # isUsername, isPassword    : Boolean
+    # data_username             : array of array string
 
     #ALGORITMA
-    if jenis_jin == '1' or jenis_jin == '2':            # jenis_jin benar
-        if jenis_jin == '1' :
-            print("\nMemilih jin “Pengumpul”.")
-        else :
-            print("\nMemilih jin “Pembangun”.")
 
-        username = input("\nMasukkan username jin: ") # meminta masukan user
-        password = ""                               # deklarasi variabel
-        isUsername = False                          # Deklarasi nilai awal, username tidak ditemukan
-        isPassword = False                          # Deklarasi nilai awal, password salah
+    # Meminta INput Jenis Jin
+    print("Jenis jin yang dapat dipanggil: \n (1) Pengumpul - Bertugas mengumpulkan bahan bangunan \n (2) Pembangun - Bertugas membangun candi")
+    jenis_jin   : str   = input("\nMasukkan nomor jenis jin yang ingin dipanggil: ")
 
-        # Looping pencarian username di database
-        for i in range(NMax):
-            if(data_username[i][0] == username):
-                isUsername = True                   # Jika username ditemukan, update kondisi
-            if(data_username[i][1] == password):
-                isPassword = True                   # Jika password benar, update kondisi
+    ## Validasi input Jenis Jin
+    while(jenis_jin != '1' and jenis_jin != '2'):
+        print("\nTidak ada jenis jin bernomor “", jenis_jin, "”!")
+        jenis_jin = input("\nMasukkan nomor jenis jin yang ingin dipanggil: ")
+
+    # -------------------- Jenis Jin sudah valid --------------------
+    if jenis_jin == '1' :
+        print("\nMemilih jin “Pengumpul”.")
+    else :
+        print("\nMemilih jin “Pembangun”.")
+
+    # Input username jin
+    username    : str   = input("\nMasukkan username jin: ") # meminta masukan user
+    isUsername  : bool  = False                          # Deklarasi nilai awal, username tidak ditemukan
+
+    # Pencarian username di database
+    if(dataModule.cariIndeks(username, data_username, 0, NMax) != (-999)):  # "0" karena username berada di kolom 0
+        isUsername = True                       # Username ditemukan
+
+    # Validasi, username harus belum diambil
+    while (isUsername == True):
+        print("\nUsername “", username, "” sudah diambil!")
+        username = input("\nMasukkan username jin: ")
+
+        # Pencarian username di database
+        if(dataModule.cariIndeks(username, data_username, 0, NMax) == (-999)): 
+            isUsername = False                       # Username tidak ditemukan
+
+    # -------------------- Username Belum Diambil  --------------------
+
+    password    : str   = input("Masukkan password jin: ")
+    while (len(password) < 5 or len(password) > 25):
+        print("\nPassword panjangnya harus 5-25 karakter!")
+        password    = input("Masukkan password jin: ")
     
-        if isUsername == False :                    # username tidak ditemukan
-            password = input("Masukkan password jin: ")
-            if len(password) < 5 or len(password) > 25:
-                print("\nPassword panjangnya harus 5-25 karakter!")
-                password = input("Masukkan password jin: ")
-                import csv
-                if jenis_jin == '1' :
-                    data = [username, password, 'jin_pengumpul']    # data yang ditambahkan ke csv
-                else:   #(jenis_jin == 2)
-                    data = [username, password, 'jin_pembangun']    # data yang ditambahkan ke csv
+    # -------------------- Password Sudah Valid  --------------------
+    # Cari indeks data kosong terdekat
+    indeks  : int   = 0
+    found   : bool  = False
+    while (indeks < NMax) and (found == False):
+        if(data_username[indeks][0] == "*"):
+            found = True
+        indeks += 1
 
-                # membuka file CSV dengan mode append (menambahkan)
-                with open('file/user.csv', mode='a', newline='') as f:
-                    # membuat objek writer
-                    writer = csv.writer(f)
+    # Update data user di berdasarkan indeks
+    if (jenis_jin == '1') : # Jin Pengumpul
+        data_username[indeks][0] = username                  # Update username
+        data_username[indeks][1] = password                  # Update password
+        data_username[indeks][2] = 'jin_pengumpul'           # Update role
+    else: #(jenis_jin == 2)
+        data_username[indeks][0] = username                  # Update username
+        data_username[indeks][1] = password                  # Update password
+        data_username[indeks][2] = 'jin_pembangun'           # Update role
 
-                    # menulis data ke dalam file csv
-                    writer.writerow(data)
-                print(f"\nMengumpulkan sesajen... \nMenyerahkan sesajen... \nMembacakan mantra... \n \nJin {username} berhasil dipanggil!")
-            else: #(len(password) >=5 and len(password) <=25)
-                import csv
-                if jenis_jin == '1' :
-                    data = [username, password, 'jin_pengumpul']    # data yang ditambahkan ke csv
-                else:   #(jenis_jin == 2)
-                    data = [username, password, 'jin_pembangun']    # data yang ditambahkan ke csv
-
-                # membuka file CSV dengan mode append (menambahkan)
-                with open('file/user.csv', mode='a', newline='') as f:
-                    # membuat objek writer
-                    writer = csv.writer(f)
-
-                    # menulis data ke dalam file csv
-                    writer.writerow(data)
-                print(f"\nMengumpulkan sesajen... \nMenyerahkan sesajen... \nMembacakan mantra... \n \nJin {username} berhasil dipanggil!")
-
-        else : #(isUsername == True)                # username ditemukan
-            print("\nUsername “", username, "” sudah diambil!") 
-    else:   # (jenis_jin != 1 and jenis_jin != 2)       # jenis_jin benar
-        print("\nTidak ada jenis jin bernomor “",jenis_jin,"”!")
-
-
+    # Print Mantra
+    print(f"\nMengumpulkan sesajen... \nMenyerahkan sesajen... \nMembacakan mantra... \n \nJin {username} berhasil dipanggil!")
 

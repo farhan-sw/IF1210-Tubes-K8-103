@@ -6,7 +6,7 @@ from function import F03_SummonJin
 from function import commands
 #import commands
 
-NMax_user = 30 ; kolom_user = 3
+NMax_user = 1000 ; kolom_user = 3
 NMax_candi = 1000 ; kolom_candi = 5
 NMax_bahan = 1000 ; kolom_bahan = 3
 
@@ -40,7 +40,7 @@ while isStart:
    if(masukan == "login" and user_isLogin == False):
       username = input("Username: ")
       user_isLogin = F01_Login.login(username, users, NMax_user)
-      user_indeks = dataModule.cariIndeks(username, users, NMax_user)
+      user_indeks = dataModule.cariIndeks(username, users, 0 ,NMax_user)   # Username ada di kolom 0
       user_role = dataModule.cariRole(username, users, NMax_user)
 
    elif (masukan == "logout" and user_isLogin == False):
@@ -56,10 +56,8 @@ while isStart:
       # -----------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI SUMMONJIN F03
       if (masukan == "summonjin"):
-         if user_role == "bandung_bondowoso":
-               print("Jenis jin yang dapat dipanggil: \n (1) Pengumpul - Bertugas mengumpulkan bahan bangunan \n (2) Pembangun - Bertugas membangun candi")
-               jenis_jin = input("\nMasukkan nomor jenis jin yang ingin dipanggil: ")
-               jin_baru = F03_SummonJin.summonjin (jenis_jin, users, NMax_user)
+         if user_role == "bandung_bondowoso": 
+               jin_baru = F03_SummonJin.summonjin (users, NMax_user)
          else:
             print("Anda tidak memiliki akses untuk menggunakan perintah ini")
       # -----------------------------------------------------------------------------------------
