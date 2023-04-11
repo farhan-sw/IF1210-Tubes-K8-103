@@ -3,7 +3,7 @@ import sys
 sys.path.insert(0, 'function')
 import B01_RNG
 
-def kumpul(data_bahan, NMax : int):
+def kumpul(data_bahan, NMax : int, isPrint : bool = True):
     # function kumpul(data_bahan : array of array string, NMax : integer) -> array of array string
     # { Mengenerate pencarian bahan bangunan dari 0-5 dan akan  mereturn update data bahan bangunan }
 
@@ -44,6 +44,7 @@ def kumpul(data_bahan, NMax : int):
             data_bahan[i][2] = str(tmp)        # Jumlah air berada di kolom indeks 2
     
     # Print hasil temuan
-    print("Jin menemukan", rand_pasir, " pasir,", rand_batu ," batu, dan", rand_air ," air.")
+    if isPrint:
+        print("Jin menemukan", rand_pasir, " pasir,", rand_batu ," batu, dan", rand_air ," air.")
     
     return data_bahan

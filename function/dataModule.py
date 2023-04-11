@@ -26,6 +26,11 @@ def cariRole(username : str, data_username, NMax : int):
             return (data_username[i][2])
     return ("Unknown")
 
+def cariBahan(nama_bahan : str, data_bahan, NMax : int = 3):
+    for i in range(NMax):
+        if(data_bahan[i][0] == nama_bahan):
+                return data_bahan[i][2]
+
 def printUsername(data_username, NMax):
     for i in range(NMax):
         if (data_username[i][0] != "*"):
