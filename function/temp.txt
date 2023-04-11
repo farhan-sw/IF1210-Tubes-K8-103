@@ -144,3 +144,18 @@ def isCanBuild(data_bahan, NMax_bahan : int, total_candi : int = 1, isPrint : bo
         return False
     else:
         return True
+
+
+      # IMPLEMENTASI FUNGSI BATCH KUMPUL/BANGUN F08
+      # BATCH KUMPUL
+      elif (masukan == "batchkumpul"):
+         if user_role == "bandung_bondowoso": 
+               bahan = F08_BatchKumpul.batchkumpul(users, NMax_user, bahan, NMax_bahan)
+         else:
+            print("Anda tidak memiliki akses untuk menggunakan perintah ini")
+      # BATCH BANGUN
+      elif (masukan == "batchbangun"):
+         if user_role == "bandung_bondowoso": 
+               candi, bahan = F08_BatchBangun.batchbangun(users, NMax_user, candi, NMax_candi, bahan, NMax_bahan)
+         else:
+            print("Anda tidak memiliki akses untuk menggunakan perintah ini")
