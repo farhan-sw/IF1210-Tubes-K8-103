@@ -1,5 +1,6 @@
 username;password;role
 Bondowoso;cintaroro;bandung_bondowoso
 Roro;gasukabondo;roro_jonggrang
-random1;random1;jin_pengumpul
-random2;risma123;jin_pendongeng
+kumpul;kumpul;jin_pengumpul
+bangun;bangun;jin_pembangun
+admin;admin;bandung_bondowoso

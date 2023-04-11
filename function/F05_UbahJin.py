@@ -63,3 +63,5 @@ def ubahJin(data_username, NMax):
             data_username[indeks_jin][2] = 'jin_pengumpul'
         
         print("Jin telah berhasil diubah.")
+    
+    return data_username

@@ -5,13 +5,14 @@ from function import F01_Login
 from function import F02_Logout
 from function import F03_SummonJin
 from function import F05_UbahJin
+from function import F06_Pembangun 
 from function import F07_Pengumpul
 from function import F13_Load
 
 # Siapkan nilai awal
 NMax_user   : int = 1000 ; kolom_user  : int = 3
 NMax_candi  : int = 1000 ; kolom_candi : int = 5
-NMax_bahan  : int = 1000 ; kolom_bahan : int = 3
+NMax_bahan  : int = 4 ; kolom_bahan : int = 3
 
 # Anggap semua fungsi yang dipanggil merupakan fungsi yang sudah dibuat sendiri pada modul lain
 users = [["*" for col in range(kolom_user)] for row in range(NMax_user)]            # Matriks data user
@@ -29,8 +30,8 @@ user_indeks    : int    = -999
 user_role      : str    = "Unknown"
 
 print(commands.excludeEmptyMatriks(users, NMax_user, kolom_user))
-print(commands.excludeEmptyMatriks(candi, NMax_user, kolom_candi))
-print(commands.excludeEmptyMatriks(bahan, NMax_user, kolom_bahan))
+print(commands.excludeEmptyMatriks(candi, NMax_candi, kolom_candi))
+print(commands.excludeEmptyMatriks(bahan, NMax_bahan, kolom_bahan))
 
 isStart = True
 while isStart:
@@ -59,7 +60,7 @@ while isStart:
       # --------------------------------------------------------------------------------------------
       # IMPLEMEMNTASI FUNGSI LOGOUT F02
       if(masukan == "logout"):
-         user_isLogin =F02_Logout.logout(user_isLogin)
+         user_isLogin = F02_Logout.logout(user_isLogin)
          print("User berhasil loggout")
       
       elif(masukan == "login" and user_isLogin == True):
@@ -86,13 +87,17 @@ while isStart:
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI UBAH TIPE JIN F05
       elif(masukan == "ubahjin"):
-         F05_UbahJin.ubahJin(users, NMax_user)
+         users = F05_UbahJin.ubahJin(users, NMax_user)
       # --------------------------------------------------------------------------------------------
 
 
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI JIN PEMBANGUN F06
-
+      elif(masukan == "bangun"):
+         if (user_role == "jin_pembangun"):
+            candi, bahan = F06_Pembangun.bangun(username, candi, NMax_candi, bahan, NMax_bahan)
+         else: # Role selain jin pengumpul
+            print("Anda tidak memiliki akses pada menu ini")
       # --------------------------------------------------------------------------------------------
       
 
@@ -153,7 +158,7 @@ while isStart:
       # Hanya untuk role : bandung_bondowoso
 
       elif(masukan == "print all"):
-         if user_role != "bandung_bondowoso": 
+         if user_role == "bandung_bondowoso0": 
             print("Anda tidak memiliki akses untuk menggunakan perintah ini")
          
          else: # role bandung_bondowoso
@@ -161,7 +166,7 @@ while isStart:
             isPrint  : bool   = False
             pilihan  : str    = ""
             while (isPrint == False):
-               pilihan = input("Apa yang ingin di print? \n (1) User \n (2) Candi \n (3) Bahan \n")
+               pilihan = input("Apa yang ingin di print? \n (1) User \n (2) Candi \n (3) Bahan \n \n")
                if (pilihan == "1" or pilihan == "2" or pilihan == "3"):
                   isPrint = True
             
@@ -170,7 +175,7 @@ while isStart:
                dataModule.printUsername(users, NMax_user)
             # Jika print candi
             elif(pilihan == "2"):
-               dataModule.printBahan(bahan, NMax_bahan)
+               dataModule.printCandi(candi, NMax_candi)
             # Jika print semua bahan
             else: # pilihan == "3"
                dataModule.printBahan(bahan, NMax_bahan)

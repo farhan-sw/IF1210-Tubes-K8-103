@@ -14,7 +14,7 @@
 # function excludeEmptyMatriks(matriks : matriks of string, NMax : integer)
 # { Menghilangkan data kosong yang ada di dalam matriks } 
 
-def countArray(array, NMax, mark="*"):
+def countArray(array, NMax : int, mark="*"):
     counter = 0
     for i in range(NMax):
         d = array[i]
@@ -22,7 +22,7 @@ def countArray(array, NMax, mark="*"):
             counter += 1
     return counter
 
-def countMatriks(matriks, NMax, mark="*"):
+def countMatriks(matriks, NMax : int, mark="*"):
     counter = 0
     for i in range(NMax):
         d = matriks[i][0]
@@ -30,7 +30,7 @@ def countMatriks(matriks, NMax, mark="*"):
             counter += 1
     return counter
 
-def excludeEmptyArray(array, NMax, mark="*"):
+def excludeEmptyArray(array, NMax : int, mark="*"):
     count = 0
     for i in range(NMax):
 
@@ -42,7 +42,7 @@ def excludeEmptyArray(array, NMax, mark="*"):
         result[i] = array[i]
     return result
 
-def excludeEmptyMatriks(matriks, NMax, kolom, mark="*"):
+def excludeEmptyMatriks(matriks, NMax, kolom : int, mark="*"):
     count = 0
     for i in range(NMax):
         if matriks[i][0] != mark:

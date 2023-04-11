@@ -32,6 +32,12 @@ def printUsername(data_username, NMax):
             print(f' Nama : {data_username[i][0]},   Pass : {data_username[i][1]},   Role : {data_username[i][2]}')
     print("\n")
 
+def printCandi(data_candi, NMax):
+    for i in range(NMax):
+        if (data_candi[i][0] != "*" and data_candi[i][0] != "id"):
+            print(f' ID : {data_candi[i][0]},   Pembuat : {data_candi[i][1]},   Pasir : {data_candi[i][2]},     Batu : {data_candi[i][3]},  Air : {data_candi[i][4]}')
+    print("\n")
+
 def printBahan(data_bahan, NMax):
     for i in range(NMax):
         if(data_bahan[i][0] == "pasir"):
@@ -47,3 +53,6 @@ def printBahan(data_bahan, NMax):
         if(data_bahan[i][0] == "air"):
             print("Air:", data_bahan[i][2])        # Jumlah air berada di kolom indeks 2
     print("\n")
+
+def hitungCandi (data_candi, NMax_candi):
+    print("")
