@@ -124,8 +124,9 @@ while isStart:
          else:
             print("Anda tidak memiliki akses untuk menggunakan perintah ini")
       # BATCH BANGUN
+      elif (masukan == "batchbangun"):
          if user_role == "bandung_bondowoso": 
-               print("")
+               candi, bahan = F08_BatchBangun.batchbangun(users, NMax_user, candi, NMax_candi, bahan, NMax_bahan)
          else:
             print("Anda tidak memiliki akses untuk menggunakan perintah ini")
       # --------------------------------------------------------------------------------------------

@@ -4,20 +4,19 @@ sys.path.insert(0, 'function')
 import commands
 import B01_RNG
 
-def bangun(pembuat : str, data_candi, NMax_candi : int, data_bahan, NMax_bahan : int, isPrint : bool = True):
+def bangun(pembuat : str, data_candi, NMax_candi : int, data_bahan, NMax_bahan : int):
     # Fnction Membangun Candi
     # { INPUT : }
 
     # KAMUS LOKAL
 
     # ALGORITMA
-
-    # ----------------------------------------------------------------------------
-    # BUat req. untuk bahan candi
-    rand_pasir_candi    : int   = B01_RNG.randomNumber(1, 5)
-    rand_batu_candi     : int   = B01_RNG.randomNumber(1, 5)
-    rand_air_candi      : int   = B01_RNG.randomNumber(1, 5)
-    # ----------------------------------------------------------------------------
+    # --------------- Hitung kebutuhan candi sebanyak total_candi -----------------
+    # Deklarasi variabel
+    needsCandi          = [[0 for j in range(3)] for i in range(1)]     # matriks indeks kolom 0 pasir, 1 batu, 2 air
+    needCandiTotal      = [0 for i in range(3)]                         # array indeks kolom 0 pasir, 1 batu, 2 air
+    needsCandi, needCandiTotal = countNeeds(1)                          # Fungsi F06 hanya membangun tepat 1 candi
+    #-----------------------------------------------------------------------------
 
 
     # ----------------------- Ambil data bahan tersedia --------------------------
@@ -44,59 +43,57 @@ def bangun(pembuat : str, data_candi, NMax_candi : int, data_bahan, NMax_bahan :
 
 
     # ----------------------------- Cek apakah bahan cukup -----------------------
-    if ((stok_batu - rand_batu_candi < 0) or (stok_pasir - rand_pasir_candi < 0) or (stok_air - rand_air_candi < 0)):
-        if isPrint:
-            print ("Bahan bangunan tidak mencukupi.")
-            print ("Candi tidak bisa dibangun!")
+    if ((stok_pasir - needCandiTotal[0] < 0) or (stok_batu - needCandiTotal[1] < 0) or (stok_air - needCandiTotal[2] < 0)):
+        print ("Bahan bangunan tidak mencukupi.")
+        print ("Candi tidak bisa dibangun!")
         return (data_candi, data_bahan)             # Mengembalikan nilai tanpa perubahan (keluar dari fungsi)
     #-----------------------------------------------------------------------------
 
 
     # ------------------------- Hitung Sisa Candi ---------------------------------
-    isBuild         : bool  = False
+    isBelowTarget   : bool  = False
     candi_target    : int   = 100
     candi_sekarang  : int   = commands.countMatriks(data_candi, NMax_candi)
     candi_selisih   : int   = candi_target - candi_sekarang
 
     if(candi_selisih > 0):
-        isBuild     = True  # Jika belum 100, maka candi dibangun dan disimpan
+        isBelowTarget     = True  # Jika belum 100, maka candi dibangun dan disimpan
     # -----------------------------------------------------------------------------
 
 
     # ----------------------- Lakukan Perubahan Data Bahan ------------------------
     # Bahan sudah cukup, lakukan pengurangan bahan di database
     # Update pasir, cari lokasi pasir
-    if isBuild:                                             # Hanya jika kurang taget yang di save
+    if isBelowTarget:                                             # Hanya jika kurang taget yang di save
         for i in range(NMax_bahan):
             if(data_bahan[i][0] == "pasir"):
-                data_bahan[i][2]    = str(stok_pasir - rand_pasir_candi)
+                data_bahan[i][2]    = str(stok_pasir - needsCandi[0][0])
         
         # Update batu, cari lokasi batu
         for i in range(NMax_bahan):
             if(data_bahan[i][0] == "batu"):
-                data_bahan[i][2]    = str(stok_batu - rand_batu_candi)
+                data_bahan[i][2]    = str(stok_batu - needsCandi[0][1])
 
         # Update air, cari lokasi air
         for i in range(NMax_bahan):
             if(data_bahan[i][0] == "air"):
-                data_bahan[i][2]    = str(stok_air - rand_air_candi)
-
+                data_bahan[i][2]    = str(stok_air - needsCandi[0][2])
     
     #--------------------- Lakukan Perubahan Data Candi --------------------------
     i       : int   = 1
     isDone  : bool  = False
-    while (isBuild == True and isDone == False and i < NMax_candi): # Hanya jika kurang taget yang di save
+    while (isBelowTarget == True and isDone == False and i < NMax_candi): # Hanya jika kurang taget yang di save
         if (data_candi[i][0] == "*"):                   # Cari ID Kosong terdekat dari 1
             data_candi[i][0] = str(i )               # Update ID dengan indeks pengisian indeks sekarang
             data_candi[i][1] = pembuat                  # Update Pembuat candi dengan nama jin sekarang
-            data_candi[i][2] = str(rand_pasir_candi)    # Update bahan pasir candi
-            data_candi[i][3] = str(rand_batu_candi)     # Update bahan batu candi
-            data_candi[i][4] = str(rand_air_candi)      # Update bahan air candi
+            data_candi[i][2] = str(needsCandi[0][0])    # Update bahan pasir candi
+            data_candi[i][3] = str(needsCandi[0][1])     # Update bahan batu candi
+            data_candi[i][4] = str(needsCandi[0][2])      # Update bahan air candi
             isDone = True
         i += 1
     
     # -------- Print Status Pembangunan ------------------
-    if isPrint and (isDone or isBuild == False): print("Candi berhasil dibangun.")
+    if isDone or isBelowTarget == False: print("Candi berhasil dibangun.")
     else: print("Terjadi kesalahan dalam pemasukkan candi")
 
     # -------- Print Sisa Candi yang perlu dibangun ------
@@ -105,4 +102,25 @@ def bangun(pembuat : str, data_candi, NMax_candi : int, data_bahan, NMax_bahan :
     else: # Candi sudah meleihi target
         print("Sisa candi yang perlu dibangun: 0.")
 
+
     return (data_candi, data_bahan)
+
+def countNeeds(total_candi : int):
+    # Deklarasi Variabel
+    bahan_random        = [[0 for j in range(3)] for i in range(total_candi)]   # matriks indeks kolom 0 pasir, 1 batu, 2 air
+    bahan_random_total  = [0 for i in range(3)]                                 # array indeks kolom 0 pasir, 1 batu, 2 air
+
+    # ----------------------------------------------------------------------------
+    # Random bahan pembuatan candi, simpan ke matriks
+    for i in range(total_candi):
+        bahan_random[i][0]      = B01_RNG.randomNumber(1, 5)       # Pasir
+        bahan_random_total[0]   += bahan_random[i][0]
+
+        bahan_random[i][1]     = B01_RNG.randomNumber(1, 5)       # Batu
+        bahan_random_total[1]   += bahan_random[i][1]
+
+        bahan_random[i][2]     = B01_RNG.randomNumber(1, 5)       # Air
+        bahan_random_total[2]   += bahan_random[i][2]
+    # ----------------------------------------------------------------------------
+
+    return (bahan_random, bahan_random_total)
