@@ -5,4 +5,142 @@
 
         # Pencarian username di database dengan username baru
         if(dataModule.cariIndeks(username, data_username, 0, NMax) != (-999)):  # "0" karena username berada di kolom 0
-            isUsername = True                       # Username ditemukan
+            isUsername = True
+            
+            
+            
+            # Username ditemukan
+
+
+
+
+# Import Modul bentukan 
+import sys
+sys.path.insert(0, 'function')
+import commands
+import B01_RNG
+
+def bangun(pembuat : str, data_candi, NMax_candi : int, data_bahan, NMax_bahan : int):
+    # Fnction Membangun Candi
+    # { INPUT : }
+
+    # KAMUS LOKAL
+
+    # ALGORITMA
+
+    isBuild = isCanBuild()
+    if isBuild == False:
+        return (data_candi, data_bahan)             # Mengembalikan nilai tanpa perubahan (keluar dari fungsi)
+    #-----------------------------------------------------------------------------
+
+
+    # ------------------------- Hitung Sisa Candi ---------------------------------
+    isBelowTarget         : bool  = False
+    candi_target    : int   = 100
+    candi_sekarang  : int   = commands.countMatriks(data_candi, NMax_candi)
+    candi_selisih   : int   = candi_target - candi_sekarang
+
+    if(candi_selisih > 0):
+        isBelowTarget     = True  # Jika belum 100, maka candi dibangun dan disimpan
+    # -----------------------------------------------------------------------------
+
+
+    # ----------------------- Lakukan Perubahan Data Bahan ------------------------
+    # Bahan sudah cukup, lakukan pengurangan bahan di database
+    # Update pasir, cari lokasi pasir
+    if isBelowTarget:                                             # Hanya jika kurang taget yang di save
+        for i in range(NMax_bahan):
+            if(data_bahan[i][0] == "pasir"):
+                data_bahan[i][2]    = str(stok_pasir - rand_pasir_candi)
+        
+        # Update batu, cari lokasi batu
+        for i in range(NMax_bahan):
+            if(data_bahan[i][0] == "batu"):
+                data_bahan[i][2]    = str(stok_batu - rand_batu_candi)
+
+        # Update air, cari lokasi air
+        for i in range(NMax_bahan):
+            if(data_bahan[i][0] == "air"):
+                data_bahan[i][2]    = str(stok_air - rand_air_candi)
+
+    
+    #--------------------- Lakukan Perubahan Data Candi --------------------------
+    i       : int   = 1
+    isDone  : bool  = False
+    while (isBelowTarget == True and isDone == False and i < NMax_candi): # Hanya jika kurang taget yang di save
+        if (data_candi[i][0] == "*"):                   # Cari ID Kosong terdekat dari 1
+            data_candi[i][0] = str(i )               # Update ID dengan indeks pengisian indeks sekarang
+            data_candi[i][1] = pembuat                  # Update Pembuat candi dengan nama jin sekarang
+            data_candi[i][2] = str(rand_pasir_candi)    # Update bahan pasir candi
+            data_candi[i][3] = str(rand_batu_candi)     # Update bahan batu candi
+            data_candi[i][4] = str(rand_air_candi)      # Update bahan air candi
+            isDone = True
+        i += 1
+    
+    # -------- Print Status Pembangunan ------------------
+    if isDone or isBelowTarget == False: print("Candi berhasil dibangun.")
+    else: print("Terjadi kesalahan dalam pemasukkan candi")
+
+    # -------- Print Sisa Candi yang perlu dibangun ------
+    if(candi_selisih > 0):
+        print("Sisa candi yang perlu dibangun:", candi_selisih, end=". \n")
+    else: # Candi sudah meleihi target
+        print("Sisa candi yang perlu dibangun: 0.")
+
+    # -------- Kembalikan Nilai Parameter ---------------
+    bahan_candi     = [0 for i in range(3)]     # Deklarasi untuk penampung bahan candi, indeks 0 pasir, 1 batu, 2 air
+    bahan_candi[0]  = rand_pasir_candi
+    bahan_candi[1]  = rand_batu_candi
+    bahan_candi[2]  = rand_air_candi
+
+    return (data_candi, data_bahan, bahan_candi)
+
+def isCanBuild(data_bahan, NMax_bahan : int, total_candi : int = 1, isPrint : bool = True):
+    # Deklarasi Variabel
+    bahan_random    = [0 for i in range(3)]     # indeks 0 pasir, 1 batu, 2 air
+    bahan_stok      = [0 for i in range(3)]     # indeks 0 pasir, 1 batu, 2 air
+    rand_pasir_candi    : int   = 0
+    rand_batu_candi     : int   = 0
+    rand_air_candi      : int   = 0
+    canBuild            : bool  = True
+
+    # ----------------------------------------------------------------------------
+    # BUat req. untuk bahan candi
+    for i in range(total_candi):
+        bahan_random[0]     += B01_RNG.randomNumber(1, 5)       # Pasir
+        bahan_random[1]     += B01_RNG.randomNumber(1, 5)       # Batu
+        bahan_random[2]     += B01_RNG.randomNumber(1, 5)       # Air
+    # ----------------------------------------------------------------------------
+
+    # ----------------------- Ambil data bahan tersedia --------------------------
+    # Deklarasi variabel
+    stok_pasir          : int   = 0
+    stok_batu           : int   = 0
+    stok_air            : int   = 0
+
+    # Update pasir, cari lokasi pasir
+    for i in range(NMax_bahan):
+        if(data_bahan[i][0] == "pasir"):
+            bahan_stok[0]   = int(data_bahan[i][2])
+    
+    # Update batu, cari lokasi batu
+    for i in range(NMax_bahan):
+        if(data_bahan[i][0] == "batu"):
+            bahan_stok[1]   = int(data_bahan[i][2])
+
+    # Update air, cari lokasi air
+    for i in range(NMax_bahan):
+        if(data_bahan[i][0] == "air"):
+            bahan_stok[2]   = int(data_bahan[i][2])
+    # ----------------------------------------------------------------------------
+
+
+    # ----------------------------- Cek apakah bahan cukup -----------------------
+
+    if ((stok_batu - rand_batu_candi < 0) or (stok_pasir - rand_pasir_candi < 0) or (stok_air - rand_air_candi < 0)):
+        if isPrint:
+            print ("Bahan bangunan tidak mencukupi.")
+            print ("Candi tidak bisa dibangun!")
+        return False
+    else:
+        return True

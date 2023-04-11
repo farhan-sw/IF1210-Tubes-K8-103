@@ -4,7 +4,7 @@ sys.path.insert(0, 'function')
 import commands
 import B01_RNG
 
-def bangun(pembuat : str, data_candi, NMax_candi : int, data_bahan, NMax_bahan : int):
+def bangun(pembuat : str, data_candi, NMax_candi : int, data_bahan, NMax_bahan : int, isPrint : bool = True):
     # Fnction Membangun Candi
     # { INPUT : }
 
@@ -44,15 +44,10 @@ def bangun(pembuat : str, data_candi, NMax_candi : int, data_bahan, NMax_bahan :
 
 
     # ----------------------------- Cek apakah bahan cukup -----------------------
-    # Deklarasi Variabel
-    isEnough        : bool  = True
-
-    print(f'Batu: Stok: {stok_batu} Rnd {rand_batu_candi} \n Pasir: Stok: {stok_pasir} Rnd {rand_pasir_candi} \n Air: Stok {stok_air} Rnd {rand_air_candi}')
-
     if ((stok_batu - rand_batu_candi < 0) or (stok_pasir - rand_pasir_candi < 0) or (stok_air - rand_air_candi < 0)):
-        isEnough    = False
-        print ("Bahan bangunan tidak mencukupi.")
-        print ("Candi tidak bisa dibangun!")
+        if isPrint:
+            print ("Bahan bangunan tidak mencukupi.")
+            print ("Candi tidak bisa dibangun!")
         return (data_candi, data_bahan)             # Mengembalikan nilai tanpa perubahan (keluar dari fungsi)
     #-----------------------------------------------------------------------------
 
@@ -101,7 +96,7 @@ def bangun(pembuat : str, data_candi, NMax_candi : int, data_bahan, NMax_bahan :
         i += 1
     
     # -------- Print Status Pembangunan ------------------
-    if isDone or isBuild == False: print("Candi berhasil dibangun.")
+    if isPrint and (isDone or isBuild == False): print("Candi berhasil dibangun.")
     else: print("Terjadi kesalahan dalam pemasukkan candi")
 
     # -------- Print Sisa Candi yang perlu dibangun ------

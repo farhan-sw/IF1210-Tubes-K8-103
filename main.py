@@ -7,6 +7,8 @@ from function import F03_SummonJin
 from function import F05_UbahJin
 from function import F06_Pembangun 
 from function import F07_Pengumpul
+from function import F08_BatchKumpul
+from function import F08_BatchBangun
 from function import F13_Load
 
 # Siapkan nilai awal
@@ -29,6 +31,7 @@ user_isLogin   : bool   = False
 user_indeks    : int    = -999
 user_role      : str    = "Unknown"
 
+# Print Coba - Coba
 print(commands.excludeEmptyMatriks(users, NMax_user, kolom_user))
 print(commands.excludeEmptyMatriks(candi, NMax_candi, kolom_candi))
 print(commands.excludeEmptyMatriks(bahan, NMax_bahan, kolom_bahan))
@@ -114,7 +117,17 @@ while isStart:
 
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI BATCH KUMPUL/BANGUN F08
-
+      # BATCH KUMPUL
+      elif (masukan == "batchkumpul"):
+         if user_role == "bandung_bondowoso": 
+               bahan = F08_BatchKumpul.batchkumpul(users, NMax_user, bahan, NMax_bahan)
+         else:
+            print("Anda tidak memiliki akses untuk menggunakan perintah ini")
+      # BATCH BANGUN
+         if user_role == "bandung_bondowoso": 
+               print("")
+         else:
+            print("Anda tidak memiliki akses untuk menggunakan perintah ini")
       # --------------------------------------------------------------------------------------------
 
 
