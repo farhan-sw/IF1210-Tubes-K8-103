@@ -1,0 +1,22 @@
+def help(user_role : str, isLogin : bool):
+    if (isLogin == False):
+        print("=========== HELP ===========")
+        print("1. login \n   Untuk masuk menggunakan akun")
+        print("2. exit \n   Untuk kembali ke terminal")
+    else: # isLogin == True
+        if(user_role == "bandung_bondowoso"):
+            print("=========== HELP ===========")
+            print("1. logout \n   Untuk keluar dari akun yang digunakan sekarang")
+            print("2. summonjin \n   Untuk memanggil jin")
+            print("3. hapusjin \n   Untuk menghapus jin beserta candi yang dibangun jin terkait")
+            print("4. ubahjin \n   Untuk mengubah tipe jin")
+            print("5. batchkumpul \n   Untuk memanggil semua jin pengumpul")
+            print("6. batchbangun \n   Untuk memanggil semua jin pembangun")
+            print("7. laporanjin \n   Untuk menampilkan semua laporan jin")
+            print("8. laporancandi \n   Untuk menampilkan semua laporan candi\n")
+        elif(user_role == "roro_jonggrang"):
+            print("=========== HELP ===========")
+            print("1. logout \n   Untuk keluar dari akun yang digunakan sekarang")            
+
+
+help("bandung_bondowoso", True)
