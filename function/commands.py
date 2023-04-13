@@ -58,4 +58,7 @@ def test():
     users = [['Bondowoso', 'cintaroro', 'bandung_bondowoso'],['Roro', 'gasukabondo', 'roro_jonggrang'], ['*', '*', '*']]
     print("Count Matriks", countMatriks(users, 3))
 
-#test()
+test()
+users = [['Bondowoso', 'cintaroro', 'bandung_bondowoso'],['Roro', 'gasukabondo', 'roro_jonggrang'], ['*', '*', '*']]
+
+print(excludeEmptyMatriks(users,1,2))

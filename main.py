@@ -9,7 +9,9 @@ from function import F06_Pembangun
 from function import F07_Pengumpul
 from function import F08_BatchKumpul
 from function import F08_BatchBangun
+from function import F12_AyamBerkokok
 from function import F13_Load
+from function import F15_Help
 
 # Siapkan nilai awal
 NMax_user   : int = 1000 ; kolom_user  : int = 3
@@ -43,7 +45,7 @@ while isStart:
    if(masukan=="exit()"): isStart=False
 
    # --------------------------------------------------------------------------------------------
-   # IMPLEMENTASI FUNGSI LOGIN F01
+   # IMPLEMENTASI FUNGSI LOGIN F01 DAN F14 HELP (KASUS BELUM LOGIN)
    if(masukan == "login" and user_isLogin == False):
       username = input("Username: ")
       user_isLogin   = F01_Login.login(username, users, NMax_user)
@@ -52,10 +54,18 @@ while isStart:
 
    elif (masukan == "logout" and user_isLogin == False):
       print("Logout gagal! Anda belum login, silahkan login terlebih dahulu sebelum melakukan logout")
+   # --------------------------------------------------------------------------------------------
+   
+   # --------------------------------------------------------------------------------------------
+   # IMPLEMENTASI FUNGSI SAVE F14 (BELUM LOGIN)
+   elif(masukan =="help" and user_isLogin == False) :
+      F15_Help.help(user_role,user_isLogin)
+   # --------------------------------------------------------------------------------------------
+
    else:
       print("Harap masukkan command yang valid (login/logout)!")
    # --------------------------------------------------------------------------------------------
-   
+
    # Loop ketika terdeteksi sudah login
    while user_isLogin:
       masukan = input(">>> ")
@@ -150,15 +160,15 @@ while isStart:
       # --------------------------------------------------------------------------------------------
 
 
+      
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI AYAM BERKOKOK F12
 
+      elif(masukan == "ayamberkokok") :
+         total_candi : int = dataModule.hitungCandi (candi, NMax_candi)
+         F12_AyamBerkokok.ayamberkokok(total_candi)
+
       # --------------------------------------------------------------------------------------------
-      
-
-
-
-
 
       elif( masukan == "printInfo"):
          search_username = input("Masukkan username yang ingin dicari: ")
@@ -200,5 +210,14 @@ while isStart:
 
       # --------------------------------------------------------------------------------------------
 
+
+      # --------------------------------------------------------------------------------------------
+      
+      # IMPLEMENTASI FUNGSI SAVE F15
+      
+      elif(masukan == "help") :
+         F15_Help.help(user_role,user_isLogin)
+
+      # --------------------------------------------------------------------------------------------
       else:
          print("Perintah tidak ditemukan, ketik 'Help' untuk bantuan")
