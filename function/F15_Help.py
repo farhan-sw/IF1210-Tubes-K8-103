@@ -16,7 +16,17 @@ def help(user_role : str, isLogin : bool):
             print("8. laporancandi \n   Untuk menampilkan semua laporan candi\n")
         elif(user_role == "roro_jonggrang"):
             print("=========== HELP ===========")
-            print("1. logout \n   Untuk keluar dari akun yang digunakan sekarang")            
+            print("1. logout \n   Untuk keluar dari akun yang digunakan sekarang") 
+        elif(user_role == "Jin Pengumpul") :
+            print("=========== HELP ===========")
+            print("1. logout \n   Untuk keluar dari akun yang digunakan sekarang")
+            print("2. kumpul \n   Untuk mengumpulkan resource candi")
+        elif(user_role == "Jin Pembangun") :
+            print("=========== HELP ===========")
+            print("1. logout \n   Untuk keluar dari akun yang digunakan sekarang")
+            print("2. bangun \n   Untuk membangun candi")
+
+         
 
 
-help("bandung_bondowoso", True)
+#help("bandung_bondowoso", True)
