@@ -8,7 +8,7 @@ def load(filename : str, NMax : int, data_matriks, kolom : int):
     file = open(filename, 'r')
     lines = file.readlines()
 
-    # Ubah jadi array
+    # Hitung jumlah baris
     count   : int   = 0
     for line in lines:
         count += 1
@@ -16,8 +16,7 @@ def load(filename : str, NMax : int, data_matriks, kolom : int):
     # Jalan setiap baris
     for baris in range(count):    
 
-        kolom_now   : int   = 0
-
+        kolom_now       : int = 0
         tmp_string      : str = ""
         baris_now       : str = lines[baris].rstrip("\n")
         jumlah_karakter : int = len(lines[baris])
