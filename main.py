@@ -77,7 +77,7 @@ while isStart:
          print("User berhasil loggout")
       
       elif(masukan == "login" and user_isLogin == True):
-         print("Anda sudah login, silahkan logout untuk login kembali.")
+         print(f'Anda sudah login dengan username {username}, silahkan logout untuk login kembali.')
       # --------------------------------------------------------------------------------------------
 
       
@@ -165,8 +165,11 @@ while isStart:
       # IMPLEMENTASI FUNGSI AYAM BERKOKOK F12
 
       elif(masukan == "ayamberkokok") :
-         total_candi : int = dataModule.hitungCandi (candi, NMax_candi)
-         F12_AyamBerkokok.ayamberkokok(total_candi)
+         if user_role == "roro_jonggrang": 
+               total_candi : int = dataModule.hitungCandi (candi, NMax_candi)
+               F12_AyamBerkokok.ayamberkokok(total_candi)
+         else:
+            print("Anda tidak memiliki akses untuk menggunakan perintah ini")
 
       # --------------------------------------------------------------------------------------------
 
