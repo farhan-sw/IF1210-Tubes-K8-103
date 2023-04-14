@@ -61,7 +61,7 @@ def printBahan(data_bahan, NMax):
 
 def hitungCandi (data_candi, NMax_candi):
     total_candi = 0
-    for i in range (NMax_candi) :
+    for i in range (1, NMax_candi) :
         if data_candi[i][0] != "*" and data_candi[i][1] != "*" and data_candi [i][2] != "*" :
             total_candi += 1
     return total_candi
