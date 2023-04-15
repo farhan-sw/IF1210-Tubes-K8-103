@@ -17,6 +17,7 @@ def save_data(data, subfolder : str):
             f.write(f"{d}\n")
     print(f"Berhasil menyimpan data di {subfolder}!")
     
+    
 # Testes
 my_data = [["a","dua"], ["dua","tiga"]]
 subfolder = input("Masukkan nama folder :")

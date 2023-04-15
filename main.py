@@ -23,9 +23,7 @@ users = [["*" for col in range(kolom_user)] for row in range(NMax_user)]        
 candi = [["*" for col in range(kolom_candi)] for row in range(NMax_candi)]          # Matriks data candi
 bahan = [["*" for col in range(kolom_bahan)] for row in range(NMax_bahan)]          # Matriks data bahan bangunan
 
-users = F13_Load.load("file/user.csv", NMax_user, users, kolom_user)
-candi = F13_Load.load("file/candi.csv", NMax_candi, candi, kolom_candi)
-bahan = F13_Load.load("file/bahan_bangunan.csv", NMax_bahan, bahan, kolom_bahan)
+users, candi, bahan = F13_Load.load(users, candi, bahan)
 
 # Deklarasi Variabel User
 username       : str    = ""

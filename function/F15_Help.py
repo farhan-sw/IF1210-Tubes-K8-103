@@ -27,7 +27,3 @@ def help(user_role : str, isLogin : bool):
             print("=========== HELP ===========")
             print("1. logout \n   Untuk keluar dari akun yang digunakan sekarang")
             print("2. bangun \n   Untuk membangun candi")
-
-        
-
-#help("bandung_bondowoso", True)
