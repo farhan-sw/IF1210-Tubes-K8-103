@@ -4,11 +4,12 @@ sys.path.insert(0, 'function')
 import commands
 import B01_RNG
 
-def bangun(pembuat : str, data_candi, NMax_candi : int, data_bahan, NMax_bahan : int):
+def bangun(pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_bahan, NMax_bahan : int):
     # Fnction Membangun Candi
     # { INPUT : }
 
     # KAMUS LOKAL
+    
 
     # ALGORITMA
     # --------------- Hitung kebutuhan candi sebanyak total_candi -----------------

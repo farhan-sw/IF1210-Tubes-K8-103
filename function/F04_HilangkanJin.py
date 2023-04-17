@@ -22,9 +22,9 @@ def hapusjin(data_user, NMax_user, data_candi, NMax_candi):
         return(data_user, data_candi)
     else:                       # Jin ditemukan
         # Meminta pilihan user
-        pilihan     : str = input("Apakah anda yakin ingin menghapus jin dengan username Jin1 (Y/N)? ")
+        pilihan     : str = input("Apakah anda yakin ingin menghapus jin dengan username", jin_username," (Y/N)? ")
         while (pilihan != "Y" and pilihan != "N"):           # Validasi jawaban
-            pilihan     : str = input("Input tidak benar \nApakah anda yakin ingin menghapus jin dengan username Jin1 (Y/N)? ")
+            pilihan     : str = input("Input tidak benar \nApakah anda yakin ingin menghapus jin dengan username", jin_username," (Y/N)? ")
 
         if(pilihan == "N"):
             print("Jin tidak dihapus, kembali ke main program")

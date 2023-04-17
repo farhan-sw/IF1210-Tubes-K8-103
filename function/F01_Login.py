@@ -4,12 +4,12 @@ sys.path.insert(0, 'function')
 import dataModule
 import commands
 
-    # Fungsi Login          login(username, data_username)
+    # Fungsi Login          login(username, data_username) -> 
 def login(username : str, data_username, NMax : int):
 
     # KAMUS LOKAL
-    # password : string
-    # isUsername, isPassword : Boolean
+    password : str
+    isUsername, isPassword : bool
 
     # ALGORITMA
     password    : str   = input("Password: ")            # Meminta masukkan user
