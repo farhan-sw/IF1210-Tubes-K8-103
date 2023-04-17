@@ -178,12 +178,6 @@ while isStart:
 
       # --------------------------------------------------------------------------------------------
 
-      elif( masukan == "printInfo"):
-         search_username = input("Masukkan username yang ingin dicari: ")
-         dataModule.printInfo(search_username, users, NMax_user)
-      elif( masukan == "Info" ):
-         print(username, user_isLogin, user_indeks, user_role)
-
 
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI PRINT DATABASE LOKAL
