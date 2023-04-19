@@ -9,6 +9,7 @@ from function import F06_Pembangun
 from function import F07_Pengumpul
 from function import F08_BatchKumpul
 from function import F08_BatchBangun
+from function import F11_HancurkanCandi
 from function import F12_AyamBerkokok
 from function import F13_Load
 from function import F15_Help
@@ -154,7 +155,11 @@ while isStart:
 
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI HANCURKAN CANDI F11
-
+      elif(masukan == "hancurkancandi"):
+         if user_role == "roro_jonggrang":
+            Hancurkancandi : int = F11_HancurkanCandi.hancurkanCandi()
+         else:
+            print("Anda tidak memiliki akses untuk menggunakan perintah ini")
       # --------------------------------------------------------------------------------------------
 
 
