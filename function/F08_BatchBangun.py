@@ -4,20 +4,35 @@ sys.path.insert(0, 'function')
 import commands
 import F06_Pembangun
 
-def batchbangun(data_user, NMax_user : int, data_candi, NMax_candi : int, data_bahan, NMax_bahan : int):
-    # FUNGSI MEMBANGUN CANDI SEKALIGUS UNTUK SEMUA JIN PERJENIS PEMBANGUN
+# FUNGSI MEMBANGUN CANDI SEKALIGUS UNTUK SEMUA JIN PERJENIS PEMBANGUN     (data_user : list[list[str]], NMax_user : int, data_candi : list[list[str]], NMax_candi : int, data_bahan : list[list[str]], NMax_bahan : int) -> (data_candi : list[list[str]], data_bahan : list[list[str]])
+def batchbangun(data_user : list[list[str]], NMax_user : int, data_candi : list[list[str]], NMax_candi : int, data_bahan : list[list[str]], NMax_bahan : int):
     # { INPUT   : data user, data candi, dan data bahan awal
     #   OUTPUT  : data candi dan data bahan yang telah dimodifikasi }
 
     # KAMUS LOKAL
-    #
+    total_candi     : int 
+    needsCandi      : list[list[int]]
+    needCandiTotal  : list[list[int]]    
+    bahan_stok      : list[int]
+    kurang_pasir    : int
+    kurang_batu     : int
+    kurang_air      : int
+    isBelowTarget   : bool
+    candi_target    : int
+    candi_sekarang  : int
+    candi_selisih   : int
+    i               : int
+    j               : int
+    k               : int
+    isDone          : bool
+    next            : bool
 
     # ALGORITMA
     # -------------- Hitung Ada Berapa Candi yang akan dibangun ----------------------
     # Hitung yang memiliki role jin_pembangun di database
-    total_candi     : int   = 0
-    needsCandi              = [[0 for j in range(3)] for i in range(1)]     # matriks indeks kolom 0 pasir, 1 batu, 2 air
-    needCandiTotal  : list  = [0 for i in range(3)]                         # array indeks kolom 0 pasir, 1 batu, 2 air
+    total_candi     = 0
+    needsCandi      = [[0 for j in range(3)] for i in range(1)]     # matriks indeks kolom 0 pasir, 1 batu, 2 air
+    needCandiTotal  = [0 for i in range(3)]                         # array indeks kolom 0 pasir, 1 batu, 2 air
 
     for i in range (NMax_user):
         if (data_user[i][2] == "jin_pembangun"):
@@ -33,10 +48,10 @@ def batchbangun(data_user, NMax_user : int, data_candi, NMax_candi : int, data_b
 
     # ------------------------ Kalkulasi Apakah Bahan Cukup ---------------------------
     # Deklarasi Variabel
-    bahan_stok      : list  = [0 for i in range(3)]                         # array indeks kolom 0 pasir, 1 batu, 2 air
-    kurang_pasir    : int   = 0
-    kurang_batu     : int   = 0
-    kurang_air      : int   = 0
+    bahan_stok      = [0 for i in range(3)]                         # array indeks kolom 0 pasir, 1 batu, 2 air
+    kurang_pasir    = 0
+    kurang_batu     = 0
+    kurang_air      = 0
 
     # Update pasir, cari lokasi pasir
     for i in range(NMax_bahan):
@@ -65,10 +80,10 @@ def batchbangun(data_user, NMax_user : int, data_candi, NMax_candi : int, data_b
 
 
     # ------------------------- Hitung Sisa Candi ---------------------------------
-    isBelowTarget   : bool  = False
-    candi_target    : int   = 100
-    candi_sekarang  : int   = commands.countMatriks(data_candi, NMax_candi)
-    candi_selisih   : int   = candi_target - candi_sekarang - total_candi
+    isBelowTarget   = False
+    candi_target    = 100
+    candi_sekarang  = commands.countMatriks(data_candi, NMax_candi)
+    candi_selisih   = candi_target - candi_sekarang - total_candi
     
     if(candi_selisih > 0):
         isBelowTarget     = True  # Jika belum 100, maka candi dibangun dan disimpan
@@ -100,11 +115,11 @@ def batchbangun(data_user, NMax_user : int, data_candi, NMax_candi : int, data_b
 
 
     # ---------------------- Lakukan Perubahan Data Candi -----------------------------
-    i   : int   = 0     # Untuk menandakan candi keberapa (maks total_candi)
-    j   : int   = 0     # Untuk menandakan sedang jalan di baris berapa ( username ) sampai ketemu pembanun
-    k   : int   = 0     # Untuk menandakan berjalan di indeks berapa (data candi)
-    isDone  : bool  = True      # Nandain candi udah diubah
-    next    : bool  = False     # Nandain next candi
+    i       = 0     # Untuk menandakan candi keberapa (maks total_candi)
+    j       = 0     # Untuk menandakan sedang jalan di baris berapa ( username ) sampai ketemu pembanun
+    k       = 0     # Untuk menandakan berjalan di indeks berapa (data candi)
+    isDone  = True      # Nandain candi udah diubah
+    next    = False     # Nandain next candi
 
     while (i < total_candi):
         next    = False

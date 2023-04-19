@@ -4,12 +4,25 @@ sys.path.insert(0, 'function')
 import commands
 import B01_RNG
 
-def bangun(pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_bahan, NMax_bahan : int):
+
+# FUNGSI BANGUN           bangun(pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_bahan : list[list[str]], NMax_bahan : int) -> (data_candi : list[list[str]], data_bahan : list[list[str]])
+def bangun(pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_bahan : list[list[str]], NMax_bahan : int):
     # Fnction Membangun Candi
-    # { INPUT : }
+    # { INPUT : pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_bahan, NMax_bahan : int}
+    # { OUTPUT : data_candi : list[list[str]], data_bahan : list[list[str]]}
 
     # KAMUS LOKAL
-    
+    needsCandi      : list[list[int]]
+    needCandiTotal  : list[list[int]]
+    stok_pasir      : int
+    stok_batu       : int
+    stok_air        : int
+    isBelowTarget   : bool
+    candi_target    : int
+    candi_sekarang  : int
+    candi_selisih   : int
+    i               : int
+    isDone          : bool
 
     # ALGORITMA
     # --------------- Hitung kebutuhan candi sebanyak total_candi -----------------
@@ -22,9 +35,9 @@ def bangun(pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_b
 
     # ----------------------- Ambil data bahan tersedia --------------------------
     # Deklarasi variabel
-    stok_pasir          : int   = 0
-    stok_batu           : int   = 0
-    stok_air            : int   = 0
+    stok_pasir  = 0
+    stok_batu   = 0
+    stok_air    = 0
 
     # Update pasir, cari lokasi pasir
     for i in range(NMax_bahan):
@@ -52,10 +65,10 @@ def bangun(pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_b
 
 
     # ------------------------- Hitung Sisa Candi ---------------------------------
-    isBelowTarget   : bool  = False
-    candi_target    : int   = 100
-    candi_sekarang  : int   = commands.countMatriks(data_candi, NMax_candi)
-    candi_selisih   : int   = candi_target - candi_sekarang
+    isBelowTarget   = False
+    candi_target    = 100
+    candi_sekarang  = commands.countMatriks(data_candi, NMax_candi)
+    candi_selisih   = candi_target - candi_sekarang
 
     if(candi_selisih > 0):
         isBelowTarget     = True  # Jika belum 100, maka candi dibangun dan disimpan
@@ -81,15 +94,15 @@ def bangun(pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_b
                 data_bahan[i][2]    = str(stok_air - needsCandi[0][2])
     
     #--------------------- Lakukan Perubahan Data Candi --------------------------
-    i       : int   = 1
-    isDone  : bool  = False
+    i           = 1
+    isDone      = False
     while (isBelowTarget == True and isDone == False and i < NMax_candi): # Hanya jika kurang taget yang di save
         if (data_candi[i][0] == "*"):                   # Cari ID Kosong terdekat dari 1
-            data_candi[i][0] = str(i )               # Update ID dengan indeks pengisian indeks sekarang
+            data_candi[i][0] = str(i )                  # Update ID dengan indeks pengisian indeks sekarang
             data_candi[i][1] = pembuat                  # Update Pembuat candi dengan nama jin sekarang
             data_candi[i][2] = str(needsCandi[0][0])    # Update bahan pasir candi
-            data_candi[i][3] = str(needsCandi[0][1])     # Update bahan batu candi
-            data_candi[i][4] = str(needsCandi[0][2])      # Update bahan air candi
+            data_candi[i][3] = str(needsCandi[0][1])    # Update bahan batu candi
+            data_candi[i][4] = str(needsCandi[0][2])    # Update bahan air candi
             isDone = True
         i += 1
     
@@ -103,10 +116,18 @@ def bangun(pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_b
     else: # Candi sudah meleihi target
         print("Sisa candi yang perlu dibangun: 0.")
 
-
     return (data_candi, data_bahan)
 
+# Fungsi countNeeds                 countNeeds(total_candi : int) -> (bahan_random : list[list[int]], bahan_random_total : list[list[int]])
 def countNeeds(total_candi : int):
+    # { INPUT   : Total candi yang ingin dibangun
+    #   OUTPUT  : array of array int berisikan bahan tiap candi dan total bahan }
+
+    # KAMUS LOKAL
+    bahan_random        : list[list[int]]
+    bahan_random_total  : list[list[int]]
+
+    # ALGORITMA
     # Deklarasi Variabel
     bahan_random        = [[0 for j in range(3)] for i in range(total_candi)]   # matriks indeks kolom 0 pasir, 1 batu, 2 air
     bahan_random_total  = [0 for i in range(3)]                                 # array indeks kolom 0 pasir, 1 batu, 2 air

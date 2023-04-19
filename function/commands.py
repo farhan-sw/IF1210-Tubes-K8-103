@@ -17,7 +17,6 @@
 def countArray(array, NMax : int, mark="*"):
     counter = 0
     for i in range(NMax):
-        d = array[i]
         if array[i] != mark:
             counter += 1
     return counter
@@ -25,7 +24,6 @@ def countArray(array, NMax : int, mark="*"):
 def countMatriks(matriks, NMax : int, mark="*"):
     counter = 0
     for i in range(NMax):
-        d = matriks[i][0]
         if matriks[i][0] != mark:
             counter += 1
     return counter

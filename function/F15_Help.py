@@ -1,4 +1,9 @@
+# PROSEDUR HELP         help(INPUT user_role : str, INPUT isLogin : bool, OUTPUT str)
 def help(user_role : str, isLogin : bool):
+    # { I.S. user_role terdefinisi dan isLogin mememiliki nilai True/False
+    #   F.S. Menampilkan seluruh command yang dimiliki tiap user ke terminal }
+
+    # ALGORITMA
     if (isLogin == False):
         print("=========== HELP ===========")
         print("1. login \n   Untuk masuk menggunakan akun")
@@ -13,7 +18,8 @@ def help(user_role : str, isLogin : bool):
             print("5. batchkumpul \n   Untuk memanggil semua jin pengumpul")
             print("6. batchbangun \n   Untuk memanggil semua jin pembangun")
             print("7. laporanjin \n   Untuk menampilkan semua laporan jin")
-            print("8. laporancandi \n   Untuk menampilkan semua laporan candi\n")
+            print("8. laporancandi \n   Untuk menampilkan semua laporan candi")
+            print("9. hancurkancandi \n   Untuk menghancurkan id candi tertentu\n")
         elif(user_role == "roro_jonggrang"):
             print("=========== HELP ===========")
             print("1. logout \n   Untuk keluar dari akun yang digunakan sekarang")

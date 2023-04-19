@@ -42,7 +42,7 @@ isStart = True
 while isStart:
    masukan = input(">>> ")
    #commands.run(masukan)
-   if(masukan=="exit()"): isStart=False
+   
 
    # --------------------------------------------------------------------------------------------
    # IMPLEMENTASI FUNGSI LOGIN F01 DAN F14 HELP (KASUS BELUM LOGIN)
@@ -56,12 +56,21 @@ while isStart:
       print("Logout gagal! Anda belum login, silahkan login terlebih dahulu sebelum melakukan logout")
    # --------------------------------------------------------------------------------------------
    
+
    # --------------------------------------------------------------------------------------------
    # IMPLEMENTASI FUNGSI SAVE F14 (BELUM LOGIN)
    elif(masukan =="help" and user_isLogin == False) :
       F15_Help.help(user_role,user_isLogin)
    # --------------------------------------------------------------------------------------------
 
+
+   # --------------------------------------------------------------------------------------------
+   # IMPLEMENTASI FUNGSI EXIT
+   if(masukan=="exit()"): isStart=False
+   # --------------------------------------------------------------------------------------------
+
+
+   # --------------------------------------------------------------------------------------------
    else:
       print("Harap masukkan command yang valid (login/logout)!")
    # --------------------------------------------------------------------------------------------
@@ -163,24 +172,20 @@ while isStart:
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI HANCURKAN CANDI F11
       elif(masukan == "hancurkancandi"):
-         if user_role == "roro_jonggrang":
-            Hancurkancandi : int = F11_HancurkanCandi.hancurkanCandi()
+         if user_role == "bandung_bondowoso":
+            candi    = F11_HancurkanCandi.hancurkanCandi(candi, NMax_candi)
          else:
             print("Anda tidak memiliki akses untuk menggunakan perintah ini")
       # --------------------------------------------------------------------------------------------
-
 
       
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI AYAM BERKOKOK F12
-
       elif(masukan == "ayamberkokok") :
          if user_role == "roro_jonggrang": 
-               total_candi : int = dataModule.hitungCandi (candi, NMax_candi)
-               F12_AyamBerkokok.ayamberkokok(total_candi)
+               F12_AyamBerkokok.ayamberkokok(candi, NMax_candi)
          else:
             print("Anda tidak memiliki akses untuk menggunakan perintah ini")
-
       # --------------------------------------------------------------------------------------------
 
 

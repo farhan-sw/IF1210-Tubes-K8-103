@@ -1,23 +1,34 @@
 import sys
 sys.path.insert(0, 'function')
 import dataModule
-def hancurkanCandi(data_candi, id, NMax_candi):
-    id = int(input("Masukkan ID candi: "))
-    posisi = dataModule.cariIndeks
-    if (posisi == (-999)):
+
+# FUNGSI HANCURKAN CANDI           hancurkanCandi(data_candi : array of array str, NMax_candi : int) -> data_candi : array of array str
+def hancurkanCandi(data_candi : list[list[str]], NMax_candi : int):
+    
+    # KAMUS LOKAL
+    id      : str
+    posisi  : int
+
+    # ALGORITMA
+    id = (input("Masukkan ID candi: "))
+    posisi = dataModule.cariIndeks(id, data_candi, 0, NMax_candi)
+    
+    if (posisi == (-999)):                              # Indeks tidak tidemukan
         print("Tidak ada candi dengan ID tersebut.")
-    else:
-        pilihan = print(f"Apakah Anda yakin ingin menghancurkan candi ID {id}: (Y/N)")
+    else:                                               # Indeks ditemukan
+        pilihan = input(f'Apakah anda yakin ingin menghapus jin dengan id {id}: (Y/N)?')
         while pilihan != "Y" and pilihan != "N":
-            pilihan = input(f"Input tidak benar \nApakah anda yakin ingin menghapus jin dengan username {id}: (Y/N)?")
+            pilihan = input(f'Input tidak benar \nApakah anda yakin ingin menghapus jin dengan id {id}: (Y/N)?')
+        
         if pilihan == "N":
             print("Candi tidak dihancurkan")
+            return(data_candi)
         else:
-            for i in range(NMax_candi):
-                if(data_candi[i][0] == id):
-                    data_candi[i][0] = "*"
-                    data_candi[i][1] = "*"
-                    data_candi[i][2] = "*"
-                    data_candi[i][3] = "*"
-
+            data_candi[posisi][0] = "*"
+            data_candi[posisi][1] = "*"
+            data_candi[posisi][2] = "*"
+            data_candi[posisi][3] = "*"
+            
+            print("Candi berhasil dihancurkan")
+            return(data_candi)              # Kembalikan data candi terupdate
 

@@ -1,7 +1,15 @@
 import argparse
 import os
 
-def load(data_user, data_candi, data_bahan):
+# FUNGSI LOAD               load(data_user : list[list[str]], data_candi : list[list[str]], data_bahan : list[list[str]]) -> ( data_user : list[list[str]], data_candi : list[list[str]], data_bahan : list[list[str]] )    
+def load(data_user : list[list[str]], data_candi : list[list[str]], data_bahan : list[list[str]]):
+    # { INPUT   : data_user : list[list[str]], data_candi : list[list[str]], data_bahan : list[list[str]]
+    #   OUTPUT  : data_user : list[list[str]], data_candi : list[list[str]], data_bahan : list[list[str]] }
+    
+    # KAMUS LOKAL
+    files       : list[list[str]]
+    i           : int
+
     # setup argumen command line
     parser = argparse.ArgumentParser(description='Membuka file dalam folder file')
     parser.add_argument('nama_folder', type=str, help='Nama folder yang ingin dibuka')
@@ -36,26 +44,36 @@ def load(data_user, data_candi, data_bahan):
         return(data_user, data_candi, data_bahan)
 
 
-def unpack(filename : str, data_matriks):
+# FUNGSI UNPACK         unpack(filename : str, data_matriks : list[list[str]]) -> data_matriks : list[list[str]]
+def unpack(filename : str, data_matriks : list[list[str]]):
+    # { INPUT   : filename : str, data_matriks : list[list[str]]
+    #   OUTPUT  : data_matriks : list[list[str]] }
     
+    # KAMUS LOKAL
+    lines       : list[list[str]]
+    count       : int
+    baris       : int
+    kolom_now   : int
+    tmp_string  : str
+    baris_now   : str
+    jumlah_karakter : int
+
     file = open(filename, 'r')
     lines = file.readlines()
 
     # Hitung jumlah baris
-    count   : int   = 0
+    count   = 0
     for line in lines:
         count += 1
 
     # Jalan setiap baris
     for baris in range(count):    
-
-        kolom_now       : int = 0
-        tmp_string      : str = ""
-        baris_now       : str = lines[baris]
-        jumlah_karakter : int = len(lines[baris])
+        kolom_now       = 0
+        tmp_string      = ""
+        baris_now       = lines[baris]
+        jumlah_karakter = len(lines[baris])
 
         for j in range(jumlah_karakter):
-            # print(baris_now[j])
             if (baris_now[j] != ";" and baris_now[j] != '\n'):
                 tmp_string += baris_now[j]
             elif(baris_now[j] == ";"):

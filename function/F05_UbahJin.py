@@ -4,8 +4,8 @@ sys.path.insert(0, 'function')
 import dataModule
 import commands
 
-    # Procedure ubahJin(data_user)
-def ubahJin(data_username, NMax):
+# FUNGSI UBAHJIN            ubahJin(data_username : list[list[str]], NMax : int) -> data_username : list[list[str]]
+def ubahJin(data_username : list[list[str]], NMax : int):
     # { I.S data_user terdefinisi }
     # { F.S data_user termodifikasi pengubahan tipe jin }
 

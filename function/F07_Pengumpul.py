@@ -3,20 +3,25 @@ import sys
 sys.path.insert(0, 'function')
 import B01_RNG
 
-def kumpul(data_bahan, NMax : int, isPrint : bool = True):
+# FUNGSI KUMPUL           kumpul(data_bahan : list[list[str]], NMax : int, isPrint : bool = True) -> data_bahan : list[list[str]]
+def kumpul(data_bahan : list[list[str]], NMax : int, isPrint : bool = True):
     # function kumpul(data_bahan : array of array string, NMax : integer) -> array of array string
     # { Mengenerate pencarian bahan bangunan dari 0-5 dan akan  mereturn update data bahan bangunan }
 
     # KAMUS LOKAL
     # rand_pasir, rand_batu, rand_air : integer
+    rand_pasir  : int
+    rand_batu   : int
+    rand_air    : int
+    tmp         : int
 
     # ALGORITMA
 
     # Ambil data random untuk pasir, batu, air dari 0-5
-    rand_pasir  : int   = B01_RNG.randomNumber(0, 5)
-    rand_batu   : int   = B01_RNG.randomNumber(0, 5)
-    rand_air    : int   = B01_RNG.randomNumber(0, 5)
-    tmp         : int   = 0     # Variabel penampung sementara str-int
+    rand_pasir  = B01_RNG.randomNumber(0, 5)
+    rand_batu   = B01_RNG.randomNumber(0, 5)
+    rand_air    = B01_RNG.randomNumber(0, 5)
+    tmp         = 0     # Variabel penampung sementara str-int
 
     # Update Data Bahan untuk pasir, batu, air
     # Update pasir, cari lokasi pasir
