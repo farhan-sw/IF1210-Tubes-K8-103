@@ -51,12 +51,12 @@ def unpack(filename : str, data_matriks):
 
         kolom_now       : int = 0
         tmp_string      : str = ""
-        baris_now       : str = lines[baris].rstrip("\n")
+        baris_now       : str = lines[baris]
         jumlah_karakter : int = len(lines[baris])
 
-        for j in range(jumlah_karakter-1):
+        for j in range(jumlah_karakter):
             # print(baris_now[j])
-            if (baris_now[j] != ";"):
+            if (baris_now[j] != ";" and baris_now[j] != '\n'):
                 tmp_string += baris_now[j]
             elif(baris_now[j] == ";"):
                 data_matriks[baris][kolom_now] = tmp_string

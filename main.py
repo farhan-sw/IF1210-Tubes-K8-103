@@ -4,6 +4,7 @@ from function import commands
 from function import F01_Login
 from function import F02_Logout
 from function import F03_SummonJin
+from function import F04_HilangkanJin
 from function import F05_UbahJin
 from function import F06_Pembangun 
 from function import F07_Pengumpul
@@ -92,6 +93,12 @@ while isStart:
 
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI HILANGKAN JIN F04
+      elif (masukan == "hapusjin"):
+         if user_role == "bandung_bondowoso": 
+               users, candi = F04_HilangkanJin.hapusjin(users, NMax_user, candi, NMax_candi)
+         else:
+            print("Anda tidak memiliki akses untuk menggunakan perintah ini")
+
 
       # --------------------------------------------------------------------------------------------
 
@@ -175,12 +182,6 @@ while isStart:
             print("Anda tidak memiliki akses untuk menggunakan perintah ini")
 
       # --------------------------------------------------------------------------------------------
-
-      elif( masukan == "printInfo"):
-         search_username = input("Masukkan username yang ingin dicari: ")
-         dataModule.printInfo(search_username, users, NMax_user)
-      elif( masukan == "Info" ):
-         print(username, user_isLogin, user_indeks, user_role)
 
 
       # --------------------------------------------------------------------------------------------
