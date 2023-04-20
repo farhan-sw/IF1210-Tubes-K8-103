@@ -10,6 +10,8 @@ from function import F06_Pembangun
 from function import F07_Pengumpul
 from function import F08_BatchKumpul
 from function import F08_BatchBangun
+from function import F09_AmbilLaporanJin
+from function import F10_AmbilLaporanCandi
 from function import F11_HancurkanCandi
 from function import F12_AyamBerkokok
 from function import F13_Load
@@ -159,13 +161,20 @@ while isStart:
 
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI AMBIL LAPORAN JIN F09
+      elif (masukan == "ambillaporanjin"):
+         if user_role == "bandung_bondowoso":
+            F09_AmbilLaporanJin.ambillaporanjin(candi, NMax_candi, bahan, users, NMax_user)
+      # --------------------------------------------------------------------------------------------
+
 
       # --------------------------------------------------------------------------------------------
 
 
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI AMBIL LAPORAN CANDI F10
-
+      elif (masukan == "ambillaporancandi"):
+         if user_role == "bandung_bondowoso":
+            F10_AmbilLaporanCandi.ambillaporancandi(candi,NMax_candi) 
       # --------------------------------------------------------------------------------------------
       
 
