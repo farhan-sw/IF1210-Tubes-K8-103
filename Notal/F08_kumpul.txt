@@ -1,0 +1,57 @@
+function batchkumpul(data_user : list[list[str]], NMax_user : int, data_bahan : list[list[str]], NMax_bahan : int)
+{ Fungsi mengumpulkan semua jin pengumpul }
+{ INPUT : database bahan
+  OUTPUT : database bahan yang telah ditambahkan }
+
+KAMUS LOKAL
+    pasir_old   : int
+    batu_old    : int
+    air_old     : int
+    count       : int
+    pasir_new   : int
+    batu_new    : int
+    air_new     : int
+
+ALGORITMA
+    pasir_old   <- 0
+    batu_old    <- 0
+    air_old     <- 0
+
+    { Update pasir, cari lokasi pasir }
+    i transversal [1 ... NMax_bahan ]
+        if (data_bahan[i][0] = "pasir") then
+            pasir_old   ← int(data_bahan[i][2])
+
+        if (data_bahan[i][0] = "batu") then
+            batu_old    ← int(data_bahan[i][2])
+    
+        if (data_bahan[i][0] = "air") then
+            air_old     ← int(data_bahan[i][2])
+    
+    { Proses Kumpul Batch }
+    count ← 0
+    i transversal [1, NMax_user]
+        if data_user[i][2] = "jin_pengumpul" then {Ditemukan jin pengumpul}
+            data_bahan ← F07_Pengumpul.kumpul(data_bahan, NMax_bahan, False)
+            count ← count + 1
+    
+    { Ambil data bahan akhir }
+    pasir_new ← 0
+    batu_new ← 0
+    air_new ← 0
+
+    i transversal [1 ... NMax_bahan ]
+        if (data_bahan[i][0] = "pasir") then
+            pasir_new   ← int(data_bahan[i][2])
+
+        if (data_bahan[i][0] = "batu") then
+            batu_new    ← int(data_bahan[i][2])
+
+        if (data_bahan[i][0] = "air") then
+            air_new     ← int(data_bahan[i][2])
+    
+    { Print Hasil }
+    output ("Mengerahkan", count, "jin untuk mengumpulkan bahan.")
+    output ("Jin menemukan total", pasir_new - pasir_old, "pasir,", batu_new - batu_old, "batu, dan", air_new - air_old, "air.")
+
+    -> data_bahan

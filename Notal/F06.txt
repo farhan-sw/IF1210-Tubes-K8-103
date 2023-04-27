@@ -1,0 +1,100 @@
+FUNGSI BANGUN
+bangun(pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_bahan : list[list[str]], NMax_bahan : int) -> (data_candi : list[list[str]], data_bahan : list[list[str]])
+    { INPUT : pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_bahan, NMax_bahan : int}
+    { OUTPUT : data_candi : list[list[str]], data_bahan : list[list[str]]}
+
+KAMUS LOKAL
+    needsCandi      : list[list[int]]
+    needCandiTotal  : list[list[int]]
+    stok_pasir      : int
+    stok_batu       : int
+    stok_air        : int
+    isBelowTarget   : bool
+    candi_target    : int
+    candi_sekarang  : int
+    candi_selisih   : int
+    i               : int
+    isDone          : bool
+
+ALGORITMA
+    {Hitung kebutuhan candi sebanyak total_candi}
+    needsCandi          <- [[0 for j transversal [0 ... 2]] for i transversal [0 ... 0]]
+    needCandiTotal      <- [0 for i transversal [0 ... 2]]
+    needsCandi, needCandiTotal <- countNeeds(1)     {Kebutuhan 1 candi}
+
+    {Ambil data bahan tersedia}
+    stok_pasir  <- 0
+    stok_batu   <- 0
+    stok_air    <- 0
+
+    {Update pasir, cari lokasi pasir}
+    i transversal [0 ... NMax_bahan-1]
+        if (data_bahan[i][0] = "pasir") then
+            stok_pasir      <- int(data_bahan[i][2])
+
+    {Update batu, cari lokasi batu}
+    i transversal [0 ... NMax_bahan-1]
+        if (data_bahan[i][0] = "batu") then
+            stok_batu       <- int(data_bahan[i][2])
+
+    {Update air, cari lokasi air}
+    i transversal [0 ... NMax_bahan-1]
+        if (data_bahan[i][0] = "air") then
+            stok_air        <- int(data_bahan[i][2])
+
+    {Cek apakah bahan cukup}
+    if ((stok_pasir - needCandiTotal[0] < 0) or (stok_batu - needCandiTotal[1] < 0) or (stok_air - needCandiTotal[2] < 0)) then
+        output("Bahan bangunan tidak mencukupi.")
+        output("Candi tidak bisa dibangun!")
+        -> (data_candi, data_bahan) {return data tanpa perubahan}
+
+    {Hitung Sisa Candi}
+    isBelowTarget   <- False
+    candi_target    <- 100
+    candi_sekarang  <- commands.countMatriks(data_candi, NMax_candi)
+    candi_selisih   <- candi_target - candi_sekarang
+
+    if (candi_selisih > 0) then
+        isBelowTarget     <- True
+
+    {Lakukan Perubahan Data Bahan}
+    if isBelowTarget then
+        i transversal [0 ... NMax_bahan-1]
+            if (data_bahan[i][0] = "pasir" then
+                data_bahan[i][2] <- str(stok_pasir - needsCandi[0][0])
+
+        i transversal [0 ... NMax_bahan-1]
+            if (data_bahan[i][0] = "batu") then
+                data_bahan[i][2] <- str(stok_batu - needsCandi[0][1])
+
+        i transversal [0 ... NMax_bahan-1]
+            if (data_bahan[i][0] = "air") then
+                data_bahan[i][2] <- str(stok_air - needsCandi[0][2])
+
+    {Lakukan Perubahan Data Candi}
+    i <- 1
+    isDone <- False
+    while (isBelowTarget = True dan isDone = False dan i < NMax_candi) do
+        if (data_candi[i][0] = "*") then
+            data_candi[i][0] <- str(i)
+            data_candi[i][1] <- pembuat
+            data_candi[i][2] <- str(needsCandi[0][0])
+            data_candi[i][3] <- str(needsCandi[0][1])
+            data_candi[i][4] <- str(needsCandi[0][2])
+            isDone <- True
+        i <- i + 1
+
+    {output Status Pembangunan}
+    if isDone or isBelowTarget = False then
+        output("Candi berhasil dibangun.")
+    else:
+        output("Terjadi kesalahan dalam pemasukkan candi")
+
+    {output Sisa Candi yang perlu dibangun}
+    if (candi_selisih > 0) then
+        output("Sisa candi yang perlu dibangun:", candi_selisih, end=". \n")
+    else:
+        output("Sisa candi yang perlu dibangun: 0.")
+
+    -> (data_candi, data_bahan)
+
