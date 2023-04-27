@@ -15,6 +15,7 @@ from function import F10_AmbilLaporanCandi
 from function import F11_HancurkanCandi
 from function import F12_AyamBerkokok
 from function import F13_Load
+from function import F14_Save
 from function import F15_Help
 
 # Siapkan nilai awal
@@ -67,8 +68,24 @@ while isStart:
 
 
    # --------------------------------------------------------------------------------------------
-   # IMPLEMENTASI FUNGSI EXIT
-   if(masukan=="exit()"): isStart=False
+   # IMPLEMENTASI FUNGSI EXIT F16
+   elif(masukan == "exit"):
+      pil_exit = input("Apakah Anda mau melakukan penyimpanan file yang sudah diubah? (y/n) ")
+      while(pil_exit != "y" and pil_exit != "n"):
+         pil_exit = input("Apakah Anda mau melakukan penyimpanan file yang sudah diubah? (y/n) ")
+      
+      if (pil_exit == "y"):                                           # Jika user memilih save
+         # Lakukan prosedur save
+         subfolder = input("Masukkan nama folder : ")
+         # Save setiap data untuk user, candi, dan bahan bangunan
+         F14_Save.save_data(users, "user.csv", subfolder, NMax_user, kolom_user)
+         F14_Save.save_data(candi, "candi.csv", subfolder, NMax_candi, kolom_candi)
+         F14_Save.save_data(bahan, "bahan_bangunan.csv", subfolder, NMax_bahan, kolom_bahan)
+         print(f"Berhasil menyimpan data di {subfolder}!")
+
+      # Keluar dari program
+      user_isLogin   = False
+      isStart        = False
    # --------------------------------------------------------------------------------------------
 
 
@@ -200,45 +217,71 @@ while isStart:
 
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI PRINT DATABASE LOKAL
-      # Hanya untuk role : bandung_bondowoso
+      # Untuk print user hanya untuk role : bandung_bondowoso
 
       elif(masukan == "print all"):
-         if user_role == "bandung_bondowoso0": 
-            print("Anda tidak memiliki akses untuk menggunakan perintah ini")
+         # Insiasi data awal dan validasi pilihan
+         isPrint  : bool   = False
+         pilihan  : str    = ""
+         while (isPrint == False):
+            pilihan = input("Apa yang ingin di print? \n (1) User \n (2) Candi \n (3) Bahan \n \n")
+            if (pilihan == "1" or pilihan == "2" or pilihan == "3"):
+               isPrint = True
          
-         else: # role bandung_bondowoso
-            # Insiasi data awal dan validasi pilihan
-            isPrint  : bool   = False
-            pilihan  : str    = ""
-            while (isPrint == False):
-               pilihan = input("Apa yang ingin di print? \n (1) User \n (2) Candi \n (3) Bahan \n \n")
-               if (pilihan == "1" or pilihan == "2" or pilihan == "3"):
-                  isPrint = True
-            
-            # Jika print semua user
-            if (pilihan == "1"):
+         # Jika print semua user, tetapi hanya untuk bandung bondowoso
+         if (pilihan == "1"):
+            if user_role != "bandung_bondowoso": 
+               print("Anda tidak memiliki akses untuk menggunakan perintah ini")
+            else: # user_role == "bandung_bondowoso
                dataModule.printUsername(users, NMax_user)
-            # Jika print candi
-            elif(pilihan == "2"):
-               dataModule.printCandi(candi, NMax_candi)
-            # Jika print semua bahan
-            else: # pilihan == "3"
-               dataModule.printBahan(bahan, NMax_bahan)
+
+         # Jika print candi
+         elif(pilihan == "2"):
+            dataModule.printCandi(candi, NMax_candi)
+
+         # Jika print semua bahan
+         else: # pilihan == "3"
+            dataModule.printBahan(bahan, NMax_bahan)
       
-      # --------------------------------------------------------------------------------------------
-            
+      # -------------------------------------------------------------------------------------------- 
       # IMPLEMENTASI FUNGSI SAVE F14
-
+      elif(masukan == "save"):
+         subfolder = input("Masukkan nama folder : ")
+         # Save setiap data untuk user, candi, dan bahan bangunan
+         F14_Save.save_data(users, "user", subfolder, NMax_user, kolom_user)
+         F14_Save.save_data(candi, "candi", subfolder, NMax_candi, kolom_candi)
+         F14_Save.save_data(bahan, "bahan_bangunan", subfolder, NMax_bahan, kolom_bahan)
+         print(f"Berhasil menyimpan data di {subfolder}!")
       # --------------------------------------------------------------------------------------------
 
 
       # --------------------------------------------------------------------------------------------
-      
       # IMPLEMENTASI FUNGSI SAVE F15
-      
-      elif(masukan == "help") :
+      elif(masukan == "help"):
          F15_Help.help(user_role,user_isLogin)
+      # -------------------------------------------------------------------------------------------
 
-      # --------------------------------------------------------------------------------------------
+
+      # -------------------------------------------------------------------------------------------
+      # IMPLEMENTASI FUNGSI EXIT F16
+      elif(masukan == "exit"):
+         pil_exit = input("Apakah Anda mau melakukan penyimpanan file yang sudah diubah? (y/n) ")
+         while(pil_exit != "y" and pil_exit != "n"):
+            pil_exit = input("Apakah Anda mau melakukan penyimpanan file yang sudah diubah? (y/n) ")
+         
+         if (pil_exit == "y"):                                           # Jika user memilih save
+            # Lakukan prosedur save
+            subfolder = input("Masukkan nama folder : ")
+            # Save setiap data untuk user, candi, dan bahan bangunan
+            F14_Save.save_data(users, "user.csv", subfolder, NMax_user, kolom_user)
+            F14_Save.save_data(candi, "candi.csv", subfolder, NMax_candi, kolom_candi)
+            F14_Save.save_data(bahan, "bahan_bangunan.csv", subfolder, NMax_bahan, kolom_bahan)
+            print(f"Berhasil menyimpan data di {subfolder}!")
+
+         # Keluar dari program
+         user_isLogin   = False
+         isStart        = False
+         
+      # -------------------------------------------------------------------------------------------
       else:
          print("Perintah tidak ditemukan, ketik 'Help' untuk bantuan")
