@@ -1,7 +1,6 @@
-function batchkumpul(data_user : list[list[str]], NMax_user : int, data_bahan : list[list[str]], NMax_bahan : int)
-{ Fungsi mengumpulkan semua jin pengumpul }
-{ INPUT : database bahan
-  OUTPUT : database bahan yang telah ditambahkan }
+function batchkumpul(data_user : list[list[str]], NMax_user : int, data_bahan : list[list[str]], NMax_bahan : int) -> data_bahan : list[list[str]]
+{ INPUT  : database bahan dan user
+  OUTPUT : database bahan yang telah dimodifikasi }
 
 KAMUS LOKAL
     pasir_old   : int

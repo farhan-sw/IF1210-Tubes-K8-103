@@ -1,20 +1,23 @@
 FUNGSI BANGUN
-bangun(pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_bahan : list[list[str]], NMax_bahan : int) -> (data_candi : list[list[str]], data_bahan : list[list[str]])
+function bangun(pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_bahan : list[list[str]], NMax_bahan : int) -> (data_candi : list[list[str]], data_bahan : list[list[str]])
     { INPUT : pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_bahan, NMax_bahan : int}
     { OUTPUT : data_candi : list[list[str]], data_bahan : list[list[str]]}
 
 KAMUS LOKAL
-    needsCandi      : list[list[int]]
-    needCandiTotal  : list[list[int]]
-    stok_pasir      : int
-    stok_batu       : int
-    stok_air        : int
+    needsCandi      : array of array of integer
+    needCandiTotal  : array of array of integer
+    stok_pasir      : integer
+    stok_batu       : integer
+    stok_air        : integer
     isBelowTarget   : bool
-    candi_target    : int
-    candi_sekarang  : int
-    candi_selisih   : int
-    i               : int
+    candi_target    : integer
+    candi_sekarang  : integer
+    candi_selisih   : integer
+    i               : integer
     isDone          : bool
+
+    function countNeeds(total_candi : int) -> (bahan_random : array of array of int, bahan_random_total : array of int)
+    { Menghitung berapa banyak bahan dari total_candi dan mengeluarkan tupple matiks bahan candi dan array detail bahan }
 
 ALGORITMA
     {Hitung kebutuhan candi sebanyak total_candi}
@@ -98,3 +101,25 @@ ALGORITMA
 
     -> (data_candi, data_bahan)
 
+function countNeeds(total_candi : int) -> (bahan_random : array of int, bahan_random_total : array of array of int)
+{ Input fungsi menerima total_candi yang ingin dibangun }
+{ Output fungsi mengembalikan tuple yang berisi matriks bahan_random dan array bahan_random_total }
+    
+KAMUS LOKAL :
+    bahan_random        : array [1 .. 3] of array [1 .. total_candi ]of integer
+    bahan_random_total  : array [1 .. 3] of integer
+    function randomNumber(start : integer, stop : integer) -> integer
+    { Mengembalikan nilai acak diantara start - stop }
+    
+ALGORITMA
+    i transversal [1 .. total_candi]
+        bahan_random[i][0]      <- B01_RNG.randomNumber(1, 5)       { Pasir }
+        bahan_random_total[0]   <- bahan_random_total[0] + bahan_random[i][0]
+
+        bahan_random[i][1]      <- B01_RNG.randomNumber(1, 5)       { Batu }
+        bahan_random_total[1]   <- bahan_random_total[1] + bahan_random[i][1]
+
+        bahan_random[i][2]      <- B01_RNG.randomNumber(1, 5)       { Air }
+        bahan_random_total[2]   <- bahan_random_total[2] + bahan_random[i][2]
+
+    return (bahan_random, bahan_random_total)
