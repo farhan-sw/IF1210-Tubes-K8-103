@@ -25,11 +25,11 @@ def help(user_role : str, isLogin : bool):
             print("1. logout \n   Untuk keluar dari akun yang digunakan sekarang")
             print("2. hancurkancandi \n   Untuk menhacurkan candi dengan indeks tertentu")
             print("3. ayamberkokok \n   Untuk menyelesaikan permainan dengan memalsukan siang/malam") 
-        elif(user_role == "Jin Pengumpul") :
+        elif(user_role == "jin_pengumpul") :
             print("=========== HELP ===========")
             print("1. logout \n   Untuk keluar dari akun yang digunakan sekarang")
             print("2. kumpul \n   Untuk mengumpulkan resource candi")
-        elif(user_role == "Jin Pembangun") :
+        elif(user_role == "jin_pembangun") :
             print("=========== HELP ===========")
             print("1. logout \n   Untuk keluar dari akun yang digunakan sekarang")
             print("2. bangun \n   Untuk membangun candi")

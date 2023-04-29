@@ -118,14 +118,14 @@ def bangun(pembuat : str, data_candi : list[list[str]], NMax_candi : int, data_b
 
     return (data_candi, data_bahan)
 
-# Fungsi countNeeds                 countNeeds(total_candi : int) -> (bahan_random : list[list[int]], bahan_random_total : list[list[int]])
+# Fungsi countNeeds                 countNeeds(total_candi : int) -> (bahan_random : list[list[int]], bahan_random_total : list[int])
 def countNeeds(total_candi : int):
     # { INPUT   : Total candi yang ingin dibangun
     #   OUTPUT  : array of array int berisikan bahan tiap candi dan total bahan }
 
     # KAMUS LOKAL
     bahan_random        : list[list[int]]
-    bahan_random_total  : list[list[int]]
+    bahan_random_total  : list[int]
 
     # ALGORITMA
     # Deklarasi Variabel

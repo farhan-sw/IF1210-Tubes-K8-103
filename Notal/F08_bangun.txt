@@ -4,9 +4,9 @@ function  batchbangun (data_user : list[list[str]], NMax_user : int, data_candi 
 
 KAMUS LOKAL :
     total_cand      : int
-    needsCandi      : list[list[int]]
-    needCandiTotal  : list[list[int]]
-    bahan_stok      : list[int]
+    needsCandi      : array of array of integer
+    needCandiTotal  : array of array of integer
+    bahan_stok      : array of integer
     kurang_pasir    : int
     kurang_batu     : int
     kurang_air      : int
@@ -19,6 +19,11 @@ KAMUS LOKAL :
     k       : int
     isDone  : bool
     next    : bool
+    function countNeeds(total_candi : int) -> (bahan_random : array of array of int, bahan_random_total : array of int)
+    { Menghitung berapa banyak bahan dari total_candi dan mengeluarkan tupple matiks bahan candi dan array detail bahan }
+    function countMatriks (data: array, NMax : integer) -> integer
+    { Menerima input matriks dan memberikan output banyaknya baris di matriks tersebut
+    yang tidak kosong }
 
 ALGORITMA UTAMA
     { Hitung Ada Berapa Candi yang akan dibangun }
@@ -27,21 +32,17 @@ ALGORITMA UTAMA
     needCandiTotal ← [0 i tranversal(3)] // array indeks kolom 0 pasir, 1 batu, 2 air
 
     for i ← 0 to NMax_user-1 do
-    if (data_user[i][2] = "jin_pembangun") then
-    total_candi ← total_candi + 1
-    endif
-    endfor
+        if (data_user[i][2] = "jin_pembangun") then
+            total_candi ← total_candi + 1
 
     if (total_candi = 0) then
-    output("Bangun gagal. Anda tidak punya jin pembangun. Silahkan summon terlebih dahulu.")
+        output("Bangun gagal. Anda tidak punya jin pembangun. Silahkan summon terlebih dahulu.")
     else
-    needsCandi, needCandiTotal ← F06_Pembangun.countNeeds(total_candi)
-    output("Mengerahkan", total_candi, " jin untuk membangun candi dengan total bahan", needCandiTotal[0], " pasir,", needCandiTotal[1], " batu, dan", needCandiTotal[2], " air.")
-    endif
-
+        needsCandi, needCandiTotal ← F06_Pembangun.countNeeds(total_candi)
+        output("Mengerahkan", total_candi, " jin untuk membangun candi dengan total bahan", needCandiTotal[0], " pasir,", needCandiTotal[1], " batu, dan", needCandiTotal[2], " air.")
 
     { Kalkulasi Apakah Bahan Cukup }
-    bahan_stok ← [0 i tranversal [1 .. 3]] // array indeks kolom 0 pasir, 1 batu, 2 air
+    bahan_stok  ← [0 i tranversal [1 .. 3]] // array indeks kolom 0 pasir, 1 batu, 2 air
     kurang_pasir ← 0
     kurang_batu ← 0
     kurang_air ← 0
@@ -84,7 +85,6 @@ ALGORITMA UTAMA
         output("Candi akan melebihi target, tidak ada candi yang dibangun")
         -> (data_candi, data_bahan)  {Mengembalikan nilai tanpa perubahan (keluar dari fungsi)}
 
-
     { Lakukan Perubahan Data Bahan }
     if isBelowTarget then
         i transversal [1 .. NMax_bahan ]:
@@ -97,7 +97,6 @@ ALGORITMA UTAMA
             if (data_bahan[i][0] = "air") then
                 data_bahan[i][2] ← str(bahan_stok[2] - needCandiTotal[2])
     
-
     { Lakukan Perubahan Data Candi }
     i ← 0
     j ← 0
@@ -126,4 +125,4 @@ ALGORITMA UTAMA
 
         i ← i + 1
 
-
+    -> (data_candi, data_bahan)
