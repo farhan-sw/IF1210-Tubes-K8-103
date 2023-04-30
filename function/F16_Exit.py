@@ -1,6 +1,6 @@
 import F14_Save
 
-# PROSEDUER Exit                   exit (masukkan : str)
+# PROSEDUER Exit                   exit (input masukkan : str)
 def exit (masukkan : str) :
 # I.S fungsi menerima masukkan dari user apakah ingin menyimpan data sebelum keluar atau tidak
 # F.S jika iya, fungsi membuat file "save" an dalam format csv dalam folder save. Jika tidak, program akan langsung keluar
@@ -19,4 +19,3 @@ def exit (masukkan : str) :
     else : # Masukkan = "N" or Masukkan == "n"
         exit()
 
-    
