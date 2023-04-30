@@ -24,7 +24,7 @@ def hapusjin(data_user : list[list[str]], NMax_user : int, data_candi : list[lis
         return(data_user, data_candi)
     else:                       # Jin ditemukan
         # Meminta pilihan user
-        pilihan     = input("Apakah anda yakin ingin menghapus jin dengan username", jin_username," (Y/N)? ")
+        pilihan     = input(f"Apakah anda yakin ingin menghapus jin dengan username {jin_username} (Y/N)? ")
         while (pilihan != "Y" and pilihan != "N"):           # Validasi jawaban
             pilihan = input(f"Input tidak benar \nApakah anda yakin ingin menghapus jin dengan username {jin_username} (Y/N)? ")
 
