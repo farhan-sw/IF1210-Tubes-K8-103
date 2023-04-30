@@ -4,33 +4,74 @@ sys.path.insert(0, 'function')
 import dataModule
 import commands
 
+# PROSEDUR AMBIL LAPORAN CANDI          ambillaporancanndi(INPUT data_candi : list[list[str]], INPUT NMax : int, OUTPUT str)
 def ambillaporancandi (data_candi, NMax):
+    # { I.S. data_candi terdefinisi dan NMax terdefinisi
+    #   F.S. Menampilkan data laporan candi ke terminal }
 
+    # KAMUS LOKAL
+    total_bahan = int
+    idcandi = list[list[str]]
+    length = int
+    harga_termahal = str
+    termahal = str
+    harga_termurah = str
+    termurah = str
+
+    # ALGORITMA
+    # -------------- hitung total candi ----------------------
+    print("> Total Candi: ", dataModule.hitungCandi(data_candi, NMax))
+
+    # -------------- hitung total bahan yang digunakan ----------------------
     total_bahan = hitung_bahan(data_candi, NMax)
-    pasir = total_bahan[0]
-    batu = total_bahan[1]
-    air = total_bahan[2]
-    idcandi = id_candi(data_candi, NMax)
+    print("> Total Pasir yang digunakan: ", total_bahan[0])
+    print("> Total Batu yang digunakan: ", total_bahan[1])
+    print("> Total Air yang digunakan: ", total_bahan[2])
+
+    # -------------- mencari id candi termahal dan termurah ----------------------
+    idcandi = [['' for i in range(2)]for i in range (NMax)]     # matriks indeks kolom 0 data jin, 1 jumlah candi
+
+    # hitung harga tiap candi
+    for i in range (1, NMax):
+        if data_candi[i][0] != "*" and data_candi[i][1] != "*" and data_candi[i][2] != "*" and data_candi[i][3] != "*" and data_candi[i][4] != "*":
+            idcandi[i-1][0] = i
+            idcandi[i-1][1] = (int(data_candi[i][2])*10000) + (int(data_candi[i][3])*15000) + (int(data_candi[i][4])*7500)
+    
+    # update letak baris dalam matriks berdasar harga candi
+    length = commands.countMatriks (idcandi, NMax, '')
+    for i in range(length):
+        for j in range(0, length-1-i):
+            if idcandi[j][1] < idcandi[j+1][1]:
+                idcandi[j], idcandi[j+1] = idcandi[j+1], idcandi[j]
+    
+    # candi termahal
     harga_termahal = f"(Rp {idcandi[0][1]})"
-    harga_termurah = f"(Rp {idcandi[1][1]})"
     termahal = idcandi[0][0]
-    termurah = idcandi[1][0]
     if idcandi[0][0] == '':
         termahal = '-'
         harga_termahal = ''
-    if idcandi[1][0] == '':
+    print(f"> ID Candi Termahal: {termahal} {harga_termahal}" )
+
+    # candi termurah
+    harga_termurah = f"(Rp {idcandi[length-1][1]})"
+    termurah = idcandi[length-1][0]
+    if idcandi[length-1][0] == '':
         termurah = '-'
         harga_termurah = ''
-
-
-    print("> Total Candi: ", dataModule.hitungCandi(data_candi, NMax))
-    print("> Total Pasir yang digunakan: ", pasir)
-    print("> Total Batu yang digunakan: ", batu)
-    print("> Total Air yang digunakan: ", air)
-    print(f"> ID Candi Termahal: {termahal} {harga_termahal}" )
     print(f"> ID Candi Termurah: {termurah} {harga_termurah}")
 
+# FUNGSI HITUNG BAHAN               hitung_bahan(data_candi : list[list[str]], NMax : int) -> (total_pasir : int, total_batu : int, total_air : int)
 def hitung_bahan (data_candi, NMax):
+    # { INPUT   : array or array str berisikakn data candi
+    #   OUTPUT  : int total_pasir, total_batu dan total_air }
+
+    # KAMUS LOKAL
+    total_pasir = int
+    total_batu = int
+    total_air = int
+
+    # ALGORITMA
+    # Hitung total pasir, total batu dan total air di database
     total_pasir = 0
     total_batu = 0
     total_air = 0
@@ -40,21 +81,3 @@ def hitung_bahan (data_candi, NMax):
         total_batu = total_batu + int(data_candi[i][3])
         total_air = total_air + int(data_candi[i][4])
     return (total_pasir, total_batu, total_air)
-
-def id_candi (data_candi, NMax):
-    idCandi = [['' for i in range(2)]for i in range (NMax)]
-    for i in range (1, NMax):
-        if data_candi[i][0] != "*" and data_candi[i][1] != "*" and data_candi[i][2] != "*" and data_candi[i][3] != "*" and data_candi[i][4] != "*":
-            idCandi[i-1][0] = i
-            idCandi[i-1][1] = (int(data_candi[i][2])*10000) + (int(data_candi[i][3])*15000) + (int(data_candi[i][4])*7500)
-    
-    length = commands.countMatriks (idCandi, NMax, '')
-    for i in range(length):
-        for j in range(0, length-1-i):
-            if idCandi[j][1] < idCandi[j+1][1]:
-                idCandi[j], idCandi[j+1] = idCandi[j+1], idCandi[j]
-    
-    return (idCandi[0], idCandi[length-1])
-
-
-
