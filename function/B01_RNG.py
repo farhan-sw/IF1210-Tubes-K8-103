@@ -17,6 +17,3 @@ def randomNumber(start, stop):
     result = start + (seed % (stop - start))
     
     return result
-
-for i in range(10):
-    print(randomNumber(0, 5))
