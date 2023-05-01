@@ -43,6 +43,16 @@ def ambillaporancandi (data_candi, NMax):
         for j in range(0, length-1-i):
             if idcandi[j][1] < idcandi[j+1][1]:
                 idcandi[j], idcandi[j+1] = idcandi[j+1], idcandi[j]
+
+    # update letak baris dalam matriks berdasar id candi
+    for j in range (1, length):  
+        if idcandi[j][1] == idcandi[0][1]:
+            if idcandi[j][0] < idcandi[0][0]:
+                idcandi[0], idcandi[j] = idcandi[j], idcandi[0]
+    for j in range (length-2, 0, -1):
+        if idcandi[j][1] == idcandi[length-1][1]:
+            if idcandi[j][0] < idcandi[length-1][0]:
+                idcandi[j], idcandi[length-1] = idcandi[length-1], idcandi[j]
     
     # candi termahal
     harga_termahal = f"(Rp {idcandi[0][1]})"

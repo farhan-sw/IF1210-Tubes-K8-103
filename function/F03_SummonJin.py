@@ -4,8 +4,10 @@ sys.path.insert(0, 'function')
 import dataModule
 import commands
 
-    # Fungsi SummonJin        login(jenis_jin, data_username)
+    # Fungsi SummonJin        summonjin(data_username : list[list[str]], NMax : int) -> data_username : list[list[str]]
 def summonjin(data_username, NMax : int):
+    # { INPUT   : data_username : list[list[str]], NMax : int}
+    #   OUTPUT  : data_username : list[list[str]] }
 
     # KAMUS LOKAL
     # indeks    : integer
