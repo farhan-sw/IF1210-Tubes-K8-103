@@ -56,7 +56,6 @@ def summonjin(data_username, NMax : int):
             i = indeks
             found : bool = False
             while i < NMax and found  == False:
-                print(data_username[i][2], str_jenisJin, i)
                 if(data_username[i][2] == str_jenisJin and data_username[i][0] == username):  # "0" karena username berada di kolom 0
                     found  = True
                 i += 1
