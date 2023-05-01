@@ -29,7 +29,7 @@ def cariIndeks(nilai : str, data_nilai : list[list[str]], kolom : int, start : i
     else:                                   # Rekurens
         return cariIndeks(nilai, data_nilai, kolom,start+1, NMax)
 
-def cariRole(username : str, data_username, NMax : int):
+def cariRole(username : str, data_username : list[list[str]], NMax : int):
     for i in range(NMax):
         if(data_username[i][0] == username):
             return (data_username[i][2])
