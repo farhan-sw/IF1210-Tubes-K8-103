@@ -21,6 +21,11 @@ def summonjin(data_username, NMax : int):
 
     #ALGORITMA
 
+    total_jin = 0
+    for i in range (1, NMax) :
+        if data_username[i][0] != "*" and data_username[i][1] != "*" and (data_username [i][2] == 'jin_pengumpul' or data_username [i][2] == 'jin_pembangun'):
+            total_jin += 1
+
     # Meminta Input Jenis Jin
     print("Jenis jin yang dapat dipanggil: \n (1) Pengumpul - Bertugas mengumpulkan bahan bangunan \n (2) Pembangun - Bertugas membangun candi")
     jenis_jin   : str   = input("\nMasukkan nomor jenis jin yang ingin dipanggil: ")
@@ -86,15 +91,18 @@ def summonjin(data_username, NMax : int):
             found = True
 
     # Update data user di berdasarkan indeks
-    if (jenis_jin == '1') : # Jin Pengumpul
-        data_username[indeks][0] = username                  # Update username
-        data_username[indeks][1] = password                  # Update password
-        data_username[indeks][2] = 'jin_pengumpul'           # Update role
-    else: #(jenis_jin == 2)
-        data_username[indeks][0] = username                  # Update username
-        data_username[indeks][1] = password                  # Update password
-        data_username[indeks][2] = 'jin_pembangun'           # Update role
-
+    if total_jin < 100 :
+        if (jenis_jin == '1') : # Jin Pengumpul
+            data_username[indeks][0] = username                  # Update username
+            data_username[indeks][1] = password                  # Update password
+            data_username[indeks][2] = 'jin_pengumpul'           # Update role
+        else: #(jenis_jin == 2)
+            data_username[indeks][0] = username                  # Update username
+            data_username[indeks][1] = password                  # Update password
+            data_username[indeks][2] = 'jin_pembangun'           # Update role
+    else:
+        print("Jumlah Jin telah maksimal! (100 jin). Bandung tidak dapat men-summon lebih dari itu")
+        
     # Print Mantra
     print(f"\nMengumpulkan sesajen... \nMenyerahkan sesajen... \nMembacakan mantra... \n \nJin {username} berhasil dipanggil!")
     
