@@ -186,6 +186,8 @@ while isStart:
       elif (masukan == "ambillaporanjin"):
          if user_role == "bandung_bondowoso":
             F09_AmbilLaporanJin.ambillaporanjin(candi, NMax_candi, bahan, users, NMax_user)
+         else:
+            print("Laporan jin hanya dapat diakses oleh akun Bandung Bondowoso.")
       # --------------------------------------------------------------------------------------------
 
 
@@ -197,6 +199,8 @@ while isStart:
       elif (masukan == "ambillaporancandi"):
          if user_role == "bandung_bondowoso":
             F10_AmbilLaporanCandi.ambillaporancandi(candi,NMax_candi) 
+         else:
+            print("Laporan jin hanya dapat diakses oleh akun Bandung Bondowoso.")
       # --------------------------------------------------------------------------------------------
       
 
