@@ -15,6 +15,7 @@ def hancurkanCandi(data_candi : list[list[str]], NMax_candi : int):
     
     if (posisi == (-999)):                              # Indeks tidak tidemukan
         print("Tidak ada candi dengan ID tersebut.")
+        return(data_candi)
     else:                                               # Indeks ditemukan
         pilihan = input(f'Apakah anda yakin ingin menghapus jin dengan id {id}: (Y/N)?')
         while pilihan != "Y" and pilihan != "N":
