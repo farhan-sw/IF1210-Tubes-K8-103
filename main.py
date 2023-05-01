@@ -183,7 +183,7 @@ while isStart:
 
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI AMBIL LAPORAN JIN F09
-      elif (masukan == "ambillaporanjin"):
+      elif (masukan == "laporanjin"):
          if user_role == "bandung_bondowoso":
             F09_AmbilLaporanJin.ambillaporanjin(candi, NMax_candi, bahan, users, NMax_user)
          else:
@@ -196,7 +196,7 @@ while isStart:
 
       # --------------------------------------------------------------------------------------------
       # IMPLEMENTASI FUNGSI AMBIL LAPORAN CANDI F10
-      elif (masukan == "ambillaporancandi"):
+      elif (masukan == "laporancandi"):
          if user_role == "bandung_bondowoso":
             F10_AmbilLaporanCandi.ambillaporancandi(candi,NMax_candi) 
          else:
@@ -221,6 +221,10 @@ while isStart:
                F12_AyamBerkokok.ayamberkokok(candi, NMax_candi)
          else:
             print("Anda tidak memiliki akses untuk menggunakan perintah ini")
+         
+         # Keluar dari program
+         user_isLogin   = False
+         isStart        = False
       # --------------------------------------------------------------------------------------------
 
 

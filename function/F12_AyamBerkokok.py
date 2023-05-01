@@ -14,6 +14,10 @@ def ayamberkokok (candi : list[list[str]], NMax_candi : int) :
     # ALGORITMA UTAMA
     total_candi = dataModule.hitungCandi(candi, NMax_candi)
 
-    if total_candi is not None and total_candi < 100 :
-        print("Kukuruyuk.. Kukuruyuk..\n")
-        print("Jumlah Candi:",total_candi) 
+    print("Jumlah Candi:",total_candi) 
+
+    if total_candi < 100:
+        print(" *Bandung Bondowoso angry noise* ")
+        print(" Roro Jonggrang dikutuk menjadi candi. ")
+    else:
+        print("Yah, Bandung Bondowoso memenangkan permainan!")

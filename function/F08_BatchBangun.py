@@ -2,6 +2,7 @@
 import sys
 sys.path.insert(0, 'function')
 import commands
+import dataModule
 import F06_Pembangun
 
 # FUNGSI MEMBANGUN CANDI SEKALIGUS UNTUK SEMUA JIN PERJENIS PEMBANGUN     (data_user : list[list[str]], NMax_user : int, data_candi : list[list[str]], NMax_candi : int, data_bahan : list[list[str]], NMax_bahan : int) -> (data_candi : list[list[str]], data_bahan : list[list[str]])
@@ -81,8 +82,8 @@ def batchbangun(data_user : list[list[str]], NMax_user : int, data_candi : list[
 
     # ------------------------- Hitung Sisa Candi ---------------------------------
     isBelowTarget   = False
-    candi_target    = 100
-    candi_sekarang  = commands.countMatriks(data_candi, NMax_candi)
+    candi_target    = 101
+    candi_sekarang  = dataModule.hitungCandi(data_candi, NMax_candi)
     candi_selisih   = candi_target - candi_sekarang - total_candi
     
     if(candi_selisih > 0):
