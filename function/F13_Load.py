@@ -22,6 +22,7 @@ def load(data_user : list[list[str]], data_candi : list[list[str]], data_bahan :
     folder_path = os.path.join(os.getcwd(), args.nama_folder)
 
     if os.path.exists(folder_path):
+        print("Loading... \nSelamat datang di program “Manajerial Candi” \nSilahkan masukkan username Anda")
         # buka file
         files = ['bahan_bangunan.csv', 'candi.csv', 'user.csv']
         for i in range(3):
