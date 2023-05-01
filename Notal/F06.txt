@@ -122,4 +122,4 @@ ALGORITMA
         bahan_random[i][2]      <- B01_RNG.randomNumber(1, 5)       { Air }
         bahan_random_total[2]   <- bahan_random_total[2] + bahan_random[i][2]
 
-    return (bahan_random, bahan_random_total)
+    -> (bahan_random, bahan_random_total)

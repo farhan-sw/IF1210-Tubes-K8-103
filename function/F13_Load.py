@@ -1,14 +1,15 @@
 import argparse
 import os
 
-# FUNGSI LOAD               load(data_user : list[list[str]], data_candi : list[list[str]], data_bahan : list[list[str]]) -> ( data_user : list[list[str]], data_candi : list[list[str]], data_bahan : list[list[str]] )    
-def load(data_user : list[list[str]], data_candi : list[list[str]], data_bahan : list[list[str]]):
+# FUNGSI LOAD               load(data_user : list[list[str]], data_candi : list[list[str]], data_bahan : list[list[str]]) -> ( data_user : list[list[str]], data_candi : list[list[str]], data_bahan : list[list[str]], isExist : boolean)    
+def load(data_user : list[list[str]], data_candi : list[list[str]], data_bahan : list[list[str]], isExist):
     # { INPUT   : data_user : list[list[str]], data_candi : list[list[str]], data_bahan : list[list[str]]
     #   OUTPUT  : data_user : list[list[str]], data_candi : list[list[str]], data_bahan : list[list[str]] }
     
     # KAMUS LOKAL
     files       : list[list[str]]
     i           : int
+    isExist     : bool
 
     # setup argumen command line
     parser = argparse.ArgumentParser(description='Membuka file dalam folder file')
@@ -36,12 +37,13 @@ def load(data_user : list[list[str]], data_candi : list[list[str]], data_bahan :
                 
             else:
                 print(f'File {files[i]} tidak ditemukan')
-                return(data_user, data_candi, data_bahan)
-            
-        return(data_user, data_candi, data_bahan)
+                return(data_user, data_candi, data_bahan, isExist)
+        
+        isExist = True
+        return(data_user, data_candi, data_bahan, isExist)
     else:
         print(f'Folder {args.nama_folder} tidak ditemukan')
-        return(data_user, data_candi, data_bahan)
+        return(data_user, data_candi, data_bahan, isExist)
 
 
 # FUNGSI UNPACK         unpack(filename : str, data_matriks : list[list[str]]) -> data_matriks : list[list[str]]

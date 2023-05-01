@@ -18,7 +18,7 @@ def hapusjin(data_user : list[list[str]], NMax_user : int, data_candi : list[lis
     jin_username    = input("Masukkan username jin: ")
     
     # Cari Lokasi jin
-    indeks_jin      = dataModule.cariIndeks(jin_username, data_user, 0, NMax_user)
+    indeks_jin      = dataModule.cariIndeks(jin_username, data_user, 0,0, NMax_user)
     if (indeks_jin == (-999)):  # Jin tidak ditemukan
         print("Tidak ada jin dengan username tersebut.")
         return(data_user, data_candi)

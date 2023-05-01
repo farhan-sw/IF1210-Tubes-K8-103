@@ -24,7 +24,7 @@ def ubahJin(data_username : list[list[str]], NMax : int):
     isUsername  : bool  = False                          # Deklarasi nilai awal, username tidak ditemukan
 
     # Pencarian username di database
-    if(dataModule.cariIndeks(username, data_username, 0, NMax) != (-999)):  # "0" karena username berada di kolom 0
+    if(dataModule.cariIndeks(username, data_username, 0,0, NMax) != (-999)):  # "0" karena username berada di kolom 0
         isUsername = True                       # Username ditemukan
 
     # Jika username tidak ada, tidak lakukan apa-apa
@@ -53,7 +53,7 @@ def ubahJin(data_username : list[list[str]], NMax : int):
 
 
     # -------------------- Prosedur Pengubahan Role Jin  --------------------
-    indeks_jin  : int   = dataModule.cariIndeks(username, data_username, 0, NMax)
+    indeks_jin  : int   = dataModule.cariIndeks(username, data_username, 0,0, NMax)
     if (jawaban == "N"):
         print("Perubahan tidak disimpan")
     else: # jawaban == "Y"

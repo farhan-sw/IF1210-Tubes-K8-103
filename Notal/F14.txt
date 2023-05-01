@@ -1,0 +1,40 @@
+function save_data(data : array of array of string, nama_data : string, subfolder : string, baris_max : integer, kolom_max : integer)
+{ Fungsi untuk menyimpan data ke file teks }
+{ Input: data - matriks data yang akan disimpan
+         nama_data - nama file
+         subfolder - nama subfolder tempat file disimpan
+         baris_max - jumlah baris maksimum dalam matriks data
+         kolom_max - jumlah kolom maksimum dalam matriks data }
+
+    KAMUS LOKAL:
+        folder_path : string
+        file_path : string
+        i, j : integer
+
+    ALGORITMA:
+        folder_path <- os.path.join(os.getcwd(), "save", subfolder)
+        if not os.path.exists(folder_path) then
+            output ("Membuat folder save...")
+            output ("Membuat folder ", subfolder, "...")
+            os.makedirs(folder_path)
+
+        file_path = os.path.join(folder_path, nama_data)
+        f = open(file_path, "w")
+
+       i traversal [0 .. baris_max)
+            j traversal [0 .. kolom_max)
+                { Tulis if data tidak kosong}
+                if data[i][j] ≠ "*"
+                    f.write(data[i][j])
+
+                    {Tulis pemisah}
+                    if j < kolom_max - 1 and data[i][j+1] ≠ "*"
+                        f.write(";")
+
+            {Tulis Enter if tidak kosong pada baris saat ini}
+            if i < baris_max - 1 and data[i][j] ≠ "*"
+                f.write('\n')
+            
+            f = open(file_path, "w")
+
+        close file f

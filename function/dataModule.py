@@ -14,11 +14,20 @@ import commands
 # I.S.  data_username sudah terdefinisi terdiri dari data user
 # F.S.  Mengeluarkan output informasi username, password, role berdasar input username
 
-def cariIndeks(nilai, data_nilai, kolom, NMax):
-    for i in range(NMax):
-        if(data_nilai[i][kolom] == nilai):
-            return i
-    return (-999)
+# def cariIndeks(nilai, data_nilai, kolom, NMax):
+#     for i in range(NMax):
+#         if(data_nilai[i][kolom] == nilai):
+#             return i
+#     return (-999)
+
+def cariIndeks(nilai : str, data_nilai : list[list[str]], kolom : int, start : int, NMax :int):
+    if start == NMax:
+        return -999                         # Basis
+    elif data_nilai[start][kolom] == nilai:
+        return start                        # Basis
+    
+    else:                                   # Rekurens
+        return cariIndeks(nilai, data_nilai, kolom,start+1, NMax)
 
 def cariRole(username : str, data_username, NMax : int):
     for i in range(NMax):

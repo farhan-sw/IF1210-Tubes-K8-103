@@ -19,16 +19,17 @@ from function import F14_Save
 from function import F15_Help
 
 # Siapkan nilai awal
-NMax_user   : int = 1000 ; kolom_user  : int = 3
-NMax_candi  : int = 1000 ; kolom_candi : int = 5
+NMax_user   : int = 500 ; kolom_user  : int = 3
+NMax_candi  : int = 500 ; kolom_candi : int = 5
 NMax_bahan  : int = 4 ; kolom_bahan : int = 3
+isExist     : bool = False
 
 # Anggap semua fungsi yang dipanggil merupakan fungsi yang sudah dibuat sendiri pada modul lain
 users = [["*" for col in range(kolom_user)] for row in range(NMax_user)]            # Matriks data user
 candi = [["*" for col in range(kolom_candi)] for row in range(NMax_candi)]          # Matriks data candi
 bahan = [["*" for col in range(kolom_bahan)] for row in range(NMax_bahan)]          # Matriks data bahan bangunan
 
-users, candi, bahan = F13_Load.load(users, candi, bahan)
+users, candi, bahan, isExist = F13_Load.load(users, candi, bahan, isExist)
 
 # Deklarasi Variabel User
 username       : str    = ""
@@ -37,11 +38,15 @@ user_indeks    : int    = -999
 user_role      : str    = "Unknown"
 
 # Print Coba - Coba
-print(commands.excludeEmptyMatriks(users, NMax_user, kolom_user))
-print(commands.excludeEmptyMatriks(candi, NMax_candi, kolom_candi))
-print(commands.excludeEmptyMatriks(bahan, NMax_bahan, kolom_bahan))
+# print(commands.excludeEmptyMatriks(users, NMax_user, kolom_user))
+# print(commands.excludeEmptyMatriks(candi, NMax_candi, kolom_candi))
+# print(commands.excludeEmptyMatriks(bahan, NMax_bahan, kolom_bahan))
 
-isStart = True
+if ( isExist):
+   isStart = True
+else:
+   isStart = False
+
 while isStart:
    masukan = input(">>> ")
    #commands.run(masukan)
@@ -52,7 +57,7 @@ while isStart:
    if(masukan == "login" and user_isLogin == False):
       username = input("Username: ")
       user_isLogin   = F01_Login.login(username, users, NMax_user)
-      user_indeks    = dataModule.cariIndeks(username, users, 0 ,NMax_user)   # Username ada di kolom 0
+      user_indeks    = dataModule.cariIndeks(username, users, 0, 0 ,NMax_user)   # Username ada di kolom 0
       user_role      = dataModule.cariRole(username, users, NMax_user)
 
    elif (masukan == "logout" and user_isLogin == False):

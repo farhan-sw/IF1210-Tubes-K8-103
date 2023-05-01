@@ -14,6 +14,8 @@ def summonjin(data_username, NMax : int):
     # jenis_jin : string
     # isUsername, isPassword    : Boolean
     # data_username             : array of array string
+    # indeks    : integer
+    # str_jenisJin : string
 
     #ALGORITMA
 
@@ -22,6 +24,7 @@ def summonjin(data_username, NMax : int):
     jenis_jin   : str   = input("\nMasukkan nomor jenis jin yang ingin dipanggil: ")
 
     ## Validasi input Jenis Jin
+    str_jenisJin : str
     while(jenis_jin != '1' and jenis_jin != '2'):
         print("\nTidak ada jenis jin bernomor “", jenis_jin, "”!")
         jenis_jin = input("\nMasukkan nomor jenis jin yang ingin dipanggil: ")
@@ -29,25 +32,41 @@ def summonjin(data_username, NMax : int):
     # -------------------- Jenis Jin sudah valid --------------------
     if jenis_jin == '1' :
         print("\nMemilih jin “Pengumpul”.")
+        str_jenisJin = "jin_pengumpul"
     else :
         print("\nMemilih jin “Pembangun”.")
+        str_jenisJin = "jin_pengumpul"
 
-    # Input username jin
-    username    : str   = input("\nMasukkan username jin: ") # meminta masukan user
+
     isUsername  : bool  = False                          # Deklarasi nilai awal, username tidak ditemukan
 
-    # Pencarian username di database
-    if(dataModule.cariIndeks(username, data_username, 0, NMax) != (-999)):  # "0" karena username berada di kolom 0
-        isUsername = True                       # Username ditemukan
-
     # Validasi, username harus belum diambil
-    while (isUsername == True):
-        print("\nUsername “", username, "” sudah diambil!")
-        username = input("\nMasukkan username jin: ")
-
+    while (isUsername == False):
+        # Input username jin
+        username    : str   = input("\nMasukkan username jin: ") # meminta masukan user
+        
         # Pencarian username di database
-        if(dataModule.cariIndeks(username, data_username, 0, NMax) == (-999)): 
-            isUsername = False                       # Username tidak ditemukan
+        indeks      : int   = dataModule.cariIndeks(username, data_username, 0, 0, NMax)
+
+        if (indeks == (-999)): # Username tidak ditemukan
+            isUsername   = True                          # Deklarasi nilai awal, username tidak ditemukan
+        
+        else: # Ditemukan username serupa, cek role nya
+            # Cek Role
+            i = indeks
+            found : bool = False
+            while i < NMax and found  == False:
+                print(data_username[i][2], str_jenisJin, i)
+                if(data_username[i][2] == str_jenisJin and data_username[i][0] == username):  # "0" karena username berada di kolom 0
+                    found  = True
+                i += 1
+             
+            if (found):
+                print("\nUsername “", username, "” sudah diambil!")
+                isUsername   = False
+            else:
+                isUsername   = True
+
 
     # -------------------- Username Belum Diambil  --------------------
 

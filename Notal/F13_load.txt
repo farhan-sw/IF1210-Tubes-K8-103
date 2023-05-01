@@ -1,0 +1,79 @@
+function load(data_user : array of array of string, data_candi : array of array of string, data_bahan : array of array of string) -> (data_user : array of array of string, data_candi : array of array of string, data_bahan : array of array of string)
+{ Fungsi untuk memuat data dari file }
+
+KAMUS LOKAL:
+    files   : array of string
+    i       : integer
+    isExist : boolean
+
+ALGORITMA:
+    { Setup argumen command line }
+    parser <- argparse.ArgumentParser(description='Membuka file dalam folder file')
+    parser.add_argument('nama_folder', type=str, help='Nama folder yang ingin dibuka')
+
+   { Parse argumen command line }
+    args <- parser.parse_args()
+
+    { Buka folder }
+    folder_path <- os.path.join(os.getcwd(), args.nama_folder)
+
+    if os.path.exists(folder_path) then
+        { Buka file }
+        files <- ['bahan_bangunan.csv', 'candi.csv', 'user.csv']
+        for i in range(3) do
+            file_path <- os.path.join(folder_path, files[i])
+            if os.path.exists(file_path) then
+                if files[i] = "bahan_bangunan.csv" then
+                    data_bahan <- unpack(file_path, data_bahan)
+                elif files[i] = "candi.csv" then
+                    data_candi <- unpack(file_path, data_candi)
+                else // files[i] = "user.csv"
+                    data_user <- unpack(file_path, data_user)
+            else
+                print("File ", files[i], " tidak ditemukan")
+                -> (data_user, data_candi, data_bahan)
+            
+        -> (data_user, data_candi, data_bahan)
+    else
+        Output("Folder ", args.nama_folder, " tidak ditemukan")
+        -> (data_user, data_candi, data_bahan)
+
+
+function unpack(filename : string, data_matriks : array of array of string) -> data_matriks : array of array of string
+{ Fungsi untuk membuka file dan mengisi matriks dengan data }
+
+KAMUS LOKAL:
+    lines           : array of string
+    count           : integer
+    baris           : integer
+    kolom_now       : integer
+    tmp_string      : string
+    baris_now       : string
+    jumlah_karakter : integer
+
+ALGORITMA:
+    file <- open(filename, 'r')
+    lines <- file.readlines()
+
+    {Hitung jumlah baris}
+    count <- 0
+    for line in lines do
+        count <- count + 1
+
+    {Jalankan setiap baris}
+    for baris in range(count) do
+        kolom_now <- 0
+        tmp_string <- ""
+        baris_now <- lines[baris]
+        jumlah_karakter <- len(lines[baris])
+
+        for j in range(jumlah_karakter) do
+            if (baris_now[j] != ";" and baris_now[j] != '\n') then
+                tmp_string <- tmp_string + baris_now[j]
+            elif (baris_now[j] = ";") then
+                data_matriks[baris][kolom_now] <- tmp_string
+                tmp_string <- ""
+                kolom_now <- kolom_now + 1
+        data_matriks[baris][kolom_now] <- tmp_string
+                
+    -> (data_matriks)

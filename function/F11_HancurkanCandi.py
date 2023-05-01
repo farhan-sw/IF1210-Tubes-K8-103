@@ -11,7 +11,7 @@ def hancurkanCandi(data_candi : list[list[str]], NMax_candi : int):
 
     # ALGORITMA
     id = (input("Masukkan ID candi: "))
-    posisi = dataModule.cariIndeks(id, data_candi, 0, NMax_candi)
+    posisi = dataModule.cariIndeks(id, data_candi, 0,0, NMax_candi)
     
     if (posisi == (-999)):                              # Indeks tidak tidemukan
         print("Tidak ada candi dengan ID tersebut.")
