@@ -50,13 +50,3 @@ def excludeEmptyMatriks(matriks, NMax, kolom : int, mark="*"):
     for i in range(count):
         result[i] = matriks[i]
     return result
-
-def test():
-    print("Tes Count")
-    users = [['Bondowoso', 'cintaroro', 'bandung_bondowoso'],['Roro', 'gasukabondo', 'roro_jonggrang'], ['*', '*', '*']]
-    print("Count Matriks", countMatriks(users, 3))
-
-# test()
-# users = [['Bondowoso', 'cintaroro', 'bandung_bondowoso'],['Roro', 'gasukabondo', 'roro_jonggrang'], ['*', '*', '*']]
-
-# print(excludeEmptyMatriks(users,1,2))
