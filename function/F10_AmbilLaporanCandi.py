@@ -10,13 +10,13 @@ def ambillaporancandi (data_candi, NMax):
     #   F.S. Menampilkan data laporan candi ke terminal }
 
     # KAMUS LOKAL
-    total_bahan = int
-    idcandi = list[list[str]]
-    length = int
-    harga_termahal = str
-    termahal = str
-    harga_termurah = str
-    termurah = str
+    total_bahan     : int
+    idcandi         : list[list[str]]
+    length          : int
+    harga_termahal  : str
+    termahal        : str
+    harga_termurah  : str
+    termurah        : str
 
     # ALGORITMA
     # -------------- hitung total candi ----------------------

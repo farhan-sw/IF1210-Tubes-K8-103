@@ -10,13 +10,13 @@ def ambillaporanjin (data_candi, NMax_candi, data_bahan, data_username, NMax_use
     #   F.S. Menampilkan data laporan jin ke terminal }
 
     # KAMUS LOKAL
-    total_jin_pengumpul = int
-    total_jin_pembangun = int
-    total_jin = int
-    jumlah_candi = list[list[str]]
-    length = int
-    terajin = str
-    termalas = str
+    total_jin_pengumpul : int
+    total_jin_pembangun : int
+    total_jin           : int
+    jumlah_candi        : list[list[str]]
+    length              : int
+    terajin             : str
+    termalas            : str
 
     # ALGORITMA
     # -------------- Hitung berapa total jin, jin pengumpul dan jin pembangun yang ada ----------------------
